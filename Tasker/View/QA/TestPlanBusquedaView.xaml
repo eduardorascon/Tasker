@@ -1,0 +1,178 @@
+﻿<UserControl x:Class="Tasker.View.QA.TestPlanBusquedaView"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:classes="clr-namespace:Tasker.Classes"
+			 mc:Ignorable="d" 
+			d:DesignHeight="500" d:DesignWidth="350">
+
+	<UserControl.DataContext>
+		<Binding Path="TestPlanBusquedaViewModel" Source="{StaticResource Locator}" />
+	</UserControl.DataContext>
+
+	<Grid x:Name="Contenedor">
+		<Grid x:Name="Principal">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="auto"/>
+				<RowDefinition Height="359*"/>
+			</Grid.RowDefinitions>
+			
+			<!-- Region Encabezado -->
+			<Grid x:Name="Encabezado" 
+				  Margin="5"
+				  Grid.Row="0">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="20"/>
+					<RowDefinition Height="30"/>
+					<RowDefinition Height="30"/>
+					<RowDefinition Height="30"/>
+				</Grid.RowDefinitions>
+
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="82"/>
+					<ColumnDefinition Width="258"/>
+				</Grid.ColumnDefinitions>
+				
+				<!-- Region MenuBar -->
+				<Grid x:Name="Menu" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Width="46">
+					<StackPanel Orientation="Horizontal" Grid.Row="1">
+						<classes:ToolBarButton VerticalAlignment="Center"
+									   MetroImageSource="{StaticResource ItemsTestPlanToolBar_confirm}" 
+                                               ToolTip="Confirm The Selected Test Plan."                                    
+									   Command="{Binding ConfirmCommand}"/>
+						<classes:ToolBarButton VerticalAlignment="Center"
+									   MetroImageSource="{StaticResource toolbar_cancel}" 
+                                               ToolTip="Return to the Main Test Plan Screen."								   
+									   Command="{Binding CancelCommand}"/>
+					</StackPanel>
+				</Grid>
+				<!-- EndRegion  -->
+
+				<!-- Region TextBlock -->
+				<TextBlock Text="Date From:" Grid.Row="1" VerticalAlignment="Center"/>
+
+				<TextBlock Text="Date To:" Grid.Row="2" VerticalAlignment="Center"/>
+
+				<TextBlock Text="Description:" Grid.Row="3" VerticalAlignment="Center"/>
+				
+				<!-- EndRegion  -->
+
+				<!-- Region TextBox & More -->
+				
+				<DatePicker Grid.Column="1" Grid.Row="1"
+							Margin="5"
+							Text="{Binding DateFrom,Mode=TwoWay}"
+							HorizontalAlignment="Left"
+							VerticalAlignment="Center"/>
+				
+				<DatePicker Grid.Column="1" Grid.Row="2"
+							Margin="5"
+							Text="{Binding DateTo,Mode=TwoWay}"
+							HorizontalAlignment="Left"
+							VerticalAlignment="Center"/>
+
+                <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" >
+				<TextBox 
+                         Width="210"
+						 Text="{Binding Descripcion,Mode=TwoWay}"
+						 Margin="5" />
+
+                <classes:ToolBarButton VerticalAlignment="Center"
+                                       Margin="5"
+									   MetroImageSource="{StaticResource toolbar_search}" 
+                                       ToolTip="Search based on selected criteria."                                    
+									   Command="{Binding SearchCommand,Mode=TwoWay}"/>
+                </StackPanel>
+
+                <!-- EndRegion  -->
+				
+			</Grid>
+			
+			<!-- EndRegion  -->
+
+			<!-- Region Elementos del ListBox -->
+			<Grid x:Name="Items" Grid.Row="1"
+                  >
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="30*" />
+				</Grid.RowDefinitions>
+
+				<Border x:Name="RevealContainer"
+				Grid.Row="0"
+				Margin="0,0,0,0"
+				 Background="#3FD2D2D2"
+				>
+				</Border>
+				<ListBox Grid.Row="1"
+				 Background="#4F4F4D4D"
+				 BorderBrush="Transparent"               
+				 ItemContainerStyle="{StaticResource RedGlowItemContainer1}"
+				 ItemsSource="{Binding TestPlanList}"
+				 SelectedItem="{Binding SelectedTestPlan}">
+
+					<ListBox.InputBindings>
+						<MouseBinding MouseAction="LeftDoubleClick"
+				Command="{Binding NewSubTaskCommand}" />
+					</ListBox.InputBindings>
+
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<Grid 	
+						Background="#20A9A9A9"
+						HorizontalAlignment="Left"
+						VerticalAlignment="Center"
+						Margin="5"
+						Width="330">
+								<Grid>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="87*"/>
+									</Grid.ColumnDefinitions>
+									<Grid.RowDefinitions>
+										<RowDefinition Height="15*"/>
+										<RowDefinition Height="25*"/>
+										<RowDefinition Height="15*"/>
+									</Grid.RowDefinitions>
+
+									<TextBlock 
+							Grid.Row="0" 							
+							MinWidth="120"
+							FontSize="13"
+							Height="Auto"
+							Margin="5,0,0,0"
+							FontWeight="Bold"
+							Foreground="{DynamicResource ItemText}"
+							Text="{Binding Descripcion}" 							 
+							/>
+
+									<TextBlock
+							Grid.Row="1"
+							FontSize="11"
+							Height="Auto"
+							Margin="5,0,0,0"
+							Foreground="{DynamicResource ItemText}"
+							Text="{Binding Fecha}" 
+							/>
+
+									<ScrollViewer HorizontalScrollBarVisibility="Auto"  Grid.Row="2">
+										<TextBlock
+								FontSize="11"
+								Height="Auto"
+								Margin="5,0,0,0"                            
+								Foreground="{DynamicResource ItemText}"
+								Text="{Binding Aplicacion}" 
+								/>
+									</ScrollViewer>
+								</Grid>
+							</Grid>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+			</Grid>
+			<!-- EndRegion  -->
+
+
+		</Grid>
+	</Grid>
+</UserControl>

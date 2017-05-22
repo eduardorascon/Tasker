@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Tasker.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="uEdge" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="uPinWindow" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="uAccentColor" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FF1E90FF</Value>
+    </Setting>
+    <Setting Name="uTheme" Type="System.String" Scope="User">
+      <Value Profile="(Default)">/FirstFloor.ModernUI;component/Assets/ModernUI.Dark.xaml</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="Tasker.View.CategoriesWorkSpaceView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ignore="http://www.ignore.com"
+        xmlns:helpers="clr-namespace:Tasker.Helpers"
+        xmlns:wpf="http://schemas.thinkpixellab.com/2011/xaml/presentation"
+        xmlns:view="clr-namespace:Tasker.View"
+        xmlns:classes="clr-namespace:Tasker.Classes"
+        mc:Ignorable="d ignore"
+        d:DesignWidth="300"
+        d:DesignHeight="400"
+        DataContext="{Binding CategoriesWorkSpaceViewModel, Source={StaticResource Locator}}">
+    <UserControl.Resources>
+        <helpers:InverseBooleanConverter x:Key="InverseBoolConverter" />
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="300*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <classes:ToolBarButton VerticalAlignment="Top"
+                                   MetroImageSource="{StaticResource toolbar_new}" ToolTip="Add a new Category" 
+                                   IsEnabled="{Binding IsEditMode, Converter={StaticResource InverseBoolConverter}}"
+                                   Command="{Binding AddCategoryCommand}"/>
+            <classes:ToolBarButton VerticalAlignment="Top"
+                                   MetroImageSource="{StaticResource toolbar_edit}" ToolTip="Edit Category"
+                                   IsEnabled="{Binding IsEditMode, Converter={StaticResource InverseBoolConverter}}"
+                                   Command="{Binding EditCategoryCommand}"/>
+            <classes:ToolBarButton VerticalAlignment="Top"
+                                   MetroImageSource="{StaticResource toolbar_save}" ToolTip="Save Category changes"
+                                   IsEnabled ="{Binding IsEditMode}"
+                                   Command="{Binding SaveCategoryCommand}"/> 
+       
+            <classes:ToolBarButton VerticalAlignment="Top"
+                                   MetroImageSource="{StaticResource toolbar_cancel}" ToolTip="Cancel" 
+                                   IsEnabled="{Binding IsEditMode}"
+                                   Command="{Binding CancelEditCategoryCommand}"/>
+            <classes:ToolBarButton VerticalAlignment="Top"
+                                   IsEnabled="{Binding IsEditMode, Converter={StaticResource InverseBoolConverter}}"
+                                   MetroImageSource="{StaticResource toolbar_switch}" ToolTip="Enable / Disable Category" 
+                                   Command="{Binding ActivateCategoryCommand}"/>
+        </StackPanel>
+
+        <Grid Grid.Row="0">
+            <Grid.Background>
+                <SolidColorBrush Color="{DynamicResource AccentColor}"></SolidColorBrush>
+            </Grid.Background>
+        <TextBlock  Margin="3,2" Text="My Categories"  />
+        </Grid>
+
+        <Border  x:Name="RevealContainer"
+                Grid.Row="2"
+                Background="#3FD2D2D2">
+            <wpf:Reveal x:Name="CategoryDetailsReveal"
+                        Duration="150"                       
+                          IsExpanded="{Binding IsEditMode}" >
+                <view:CategoryView x:Name="OCategoryView" Height="160" />
+            </wpf:Reveal>
+        </Border>
+        
+        <view:CategoriesView Grid.Row="3"></view:CategoriesView>
+
+    </Grid>
+</UserControl>

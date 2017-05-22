@@ -1,0 +1,47 @@
+﻿<mvvmLight:ViewBaseEx x:Class="Tasker.View.SprintView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:mvvmLight="clr-namespace:GalaSoft.MvvmLight"
+                      Width="300"
+            d:DesignHeight="160"
+             DataContext="{Binding SprintViewModel,
+                                   Source={StaticResource Locator}}"
+             FocusManager.FocusedElement="{Binding ElementName=TituloTxt}"
+             mc:Ignorable="d">
+
+    <Grid  Margin="1">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80*"/>
+            <ColumnDefinition Width="112*"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>     
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="4*"></RowDefinition>
+
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="0" Grid.Row="0">Team:</Label>
+        <Label Grid.Column="1" Grid.Row="0" Content="{Binding SelectedSprint.TeamId}"></Label>
+        <Label Grid.Column="0" Grid.Row="1">Project:</Label>
+        <Label Grid.Column="1" Grid.Row="1" Content="{Binding SelectedSprint.ProjectId}"></Label>
+        <Label Grid.Column="0" Grid.Row="2">Sprint Number:</Label>
+        <TextBox Grid.Row="2" Height="25" Grid.Column="1" Text ="{Binding SelectedSprint.SprintName}"  MaxLength="30"></TextBox>
+        <CheckBox Grid.Column="0" Grid.Row="3" IsChecked="{Binding SelectedSprint.OverWriteJQLFilter}" >Use JQL Filter:</CheckBox>
+        <TextBox Grid.Row="4" Margin="0,2" TextWrapping="Wrap" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding SelectedSprint.JqlFilter}"
+                 IsEnabled ="{Binding SelectedSprint.OverWriteJQLFilter}" MaxLength="100"></TextBox>
+
+
+        <!--<xctk:ColorPicker x:Name="ColorPicker" StandardColorsHeader="Tasker Metro Colors" SelectedColor ="{Binding SelectedCategory.Color}"  ShowAvailableColors="False" ShowDropDownButton="True" Grid.Row="3" Grid.Column="1" VerticalAlignment="Top">
+        </xctk:ColorPicker>-->
+
+    </Grid>
+
+</mvvmLight:ViewBaseEx >
+

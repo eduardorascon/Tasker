@@ -1,0 +1,107 @@
+﻿<UserControl x:Class="Tasker.View.CategoriesView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ignore="http://www.ignore.com"
+        xmlns:helpers="clr-namespace:Tasker.Helpers"
+        xmlns:classes="clr-namespace:Tasker.Classes"
+        mc:Ignorable="d ignore"
+        d:DesignWidth="300"
+        d:DesignHeight="400"
+        DataContext="{Binding CategoriesViewModel, Source={StaticResource Locator}}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="*"/>
+            
+        </Grid.RowDefinitions>
+
+        <!--IsManipulationEnabled="{Binding IsEditTaskHidden}"-->
+        <classes:FilterControl  Margin="1" Height="22" Header="Search item here" 
+                            TargetControl="{Binding ElementName=LstItems}" 
+                            FilterTextBindingPath="Description">
+            <classes:FilterControl.ListTextBindingPath>
+                <classes:FilterAdapter Title="Global Category" PropertyBound="GlobalCategoryId"/>
+                <classes:FilterAdapter Title="Category" PropertyBound="CategoryId"/>
+                <classes:FilterAdapter Title="Description" PropertyBound="Description"/>
+                <classes:FilterAdapter Title="Color" PropertyBound="Color"/>
+            </classes:FilterControl.ListTextBindingPath>
+        </classes:FilterControl>
+        
+        <ListBox Grid.Row="1"
+                 Name="LstItems"
+                 Background="#4F4F4D4D"
+                 BorderBrush="Transparent"
+                 helpers:ControlItemDoubleClick.ItemsDoubleClick="true"
+                 ItemContainerStyle="{StaticResource RedGlowItemContainer1}"
+                 ItemsSource="{Binding Categories}"
+                 SelectedItem="{Binding SelectedCategory}">
+    
+        <ListBox.ItemTemplate>
+            <DataTemplate>
+
+                <Grid Background="#20A9A9A9" Height="50" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="110" />
+                        <ColumnDefinition Width="170" />
+                        <ColumnDefinition Width="37" />
+
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Column="0" Grid.Row="0"
+                                           Margin="0"
+                                           VerticalAlignment="Top"
+                                           Foreground= "{DynamicResource ItemText}"
+                                           Text="{Binding GlobalCategoryId}"
+                                           TextWrapping="Wrap" />
+
+                            <Path x:Name="PathCerrado" Grid.Row="1"
+                              Data ="M66,28.7799987792969L66,46.7799987792969 39,73.7799987792969 24,58.7799987792969 24,40.7799987792969 39,55.7331237792969 66,28.7799987792969z"
+                                  Stretch="Uniform" Width="20" Height="20" Margin="5,0,5,5" RenderTransformOrigin="0.5,0.5" Fill="limeGreen">
+                            </Path>
+
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="2*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <TextBlock 
+                                   Margin="0"
+                                   VerticalAlignment="Top"
+                                FontWeight="Bold"
+                                   Foreground= "{DynamicResource ItemText}"
+                                   Text="{Binding CategoryId}"
+                                   TextWrapping="Wrap" />
+
+                     <TextBlock Grid.Row="1" 
+                                   Margin="0"
+                                   VerticalAlignment="Top"
+                                   Foreground= "{DynamicResource ItemText}"
+                                   Text="{Binding Description }"
+                                   TextWrapping="Wrap" />
+                    </Grid>
+                        <Path x:Name="PathCategory" Grid.Column="2"
+                                Data="M0,0L64,0 64,64 0,64z"   
+                                Stretch="Uniform" Width="20" Height="20" Margin="5,0,5,0" RenderTransformOrigin="0.5,0.5" Fill="{Binding CategoryColorBrush}" ToolTip="{Binding Category}">
+                        </Path>
+                    
+                    </Grid>
+                <DataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Path=IsActive}" Value="False">
+                            <Setter TargetName="PathCerrado" Property="Fill" Value="Gray" />
+                            <Setter TargetName="PathCategory" Property="Opacity" Value="0.2"></Setter>
+                        </DataTrigger>
+                    </DataTemplate.Triggers>
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+        </ListBox>
+
+    </Grid>
+</UserControl>

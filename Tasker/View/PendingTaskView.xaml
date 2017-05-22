@@ -1,0 +1,174 @@
+﻿<UserControl x:Class="Tasker.View.PendingTaskView"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Classes="clr-namespace:Tasker.Classes"
+             Width="340" Height="240"
+			 DataContext="{Binding PendingTask,
+								   Source={StaticResource Locator}}"
+			 FocusManager.FocusedElement="{Binding ElementName=ComboBox}" mc:Ignorable="d">
+
+	<UserControl.Resources>
+		<Style TargetType="{x:Type TextBox}">
+			<Setter Property="Background" Value="Transparent" />
+			<Setter Property="BorderThickness" Value="0" />
+			<Setter Property="AcceptsReturn" Value="False" />
+			<Setter Property="FontWeight" Value="SemiBold" />
+			<Setter Property="Foreground" Value ="{DynamicResource ItemText}"/>
+		</Style>
+	</UserControl.Resources>
+
+	<Grid Background="Transparent">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="80" />
+			<RowDefinition Height="60" />
+			<RowDefinition Height="40*" />
+		</Grid.RowDefinitions>
+
+		<!--region Tarea-->
+		<WrapPanel VerticalAlignment="Center" >
+			<StackPanel Orientation="Vertical">
+                <TextBox Grid.Column="2" VerticalAlignment="Bottom" FontWeight="SemiBold" 
+                                              FocusManager.IsFocusScope="True"
+                                 Focusable="True"
+                               	 Classes:FocusManagerExtensions.IsFocused="{Binding IsFocused}"
+								   KeyboardNavigation.TabIndex="0" Text="{Binding Path=SelectedTask.Title,
+												Mode=TwoWay,
+												UpdateSourceTrigger=PropertyChanged}" 
+								   TextWrapping="Wrap" Height="53" BorderThickness="0" Margin="0,5,1,0" Width="359"
+								   >
+			</TextBox>
+			</StackPanel>
+        </WrapPanel>
+		<!--endregion-->
+
+		<!--region Categorias-->
+		<WrapPanel VerticalAlignment="Center" Margin="0,4,0,3" Grid.Row="1">
+			<StackPanel Width="138"  Orientation="Vertical">
+				<TextBlock Text="Category"></TextBlock>
+				<ComboBox x:Name="ComboBox" MinWidth="80" DisplayMemberPath="CategoryId" Margin="2"
+					IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Categories}" KeyboardNavigation.TabIndex="1"
+					SelectedItem="{Binding SelectedCategory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+					SelectedValue="{Binding SelectedTask.Category, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+					SelectedValuePath="CategoryId" Height="24"  />
+				<Rectangle Margin="2,3" Fill="{Binding SelectedCategory.CategoryColorBrush}" Width="31">
+				</Rectangle>
+			</StackPanel>
+			<StackPanel>
+				<TextBlock Text="Due Date"></TextBlock>
+				<DatePicker Width="110"  Margin="2,2" BorderThickness="0"
+                            KeyboardNavigation.TabIndex="2"
+					Text="{Binding SelectedTask.DueDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="25" />
+
+				</StackPanel>
+			<WrapPanel Width="85">
+				<TextBlock Text="State"></TextBlock>
+				<ComboBox x:Name="EstadoTarea" Width="82" IsSynchronizedWithCurrentItem="True"
+                          KeyboardNavigation.TabIndex="3" Margin="2"
+					ItemsSource="{Binding StatusTaskCol}"
+					SelectedValue="{Binding SelectedTask.Status, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+					Height="24" />
+			</WrapPanel>
+		</WrapPanel>
+		<!--endregion-->
+		
+		<Grid Grid.Row="2" VerticalAlignment="Top" >
+			<Grid.RowDefinitions>
+				<RowDefinition Height="20" />
+				<RowDefinition Height="20" />
+				<RowDefinition Height="20" />
+				<RowDefinition Height="20" />
+			
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="50" />
+				<ColumnDefinition Width="270*" />
+				<ColumnDefinition Width="50" />
+				<ColumnDefinition Width="50" />
+			</Grid.ColumnDefinitions>
+
+			
+			<!-- region Fila de Importancia-->
+			<Viewbox Grid.Row="0">
+				<Grid Width="20" Height="40" Visibility="Visible">
+					<Path Stretch="Uniform" Fill="#FFF40404" Width="26" Height="22" Margin="0,0,0,0">
+						<Path.Data>
+							<PathGeometry FillRule="Nonzero"
+										  Figures="M13.640625,94.0777053833008L15.609375,94.4585647583008 17.296875,95.6011428833008 18.45703125,97.2827835083008 18.84375,99.2808303833008 18.45703125,101.273017883301 17.296875,102.937080383301 15.609375,104.062080383301 13.640625,104.437080383301 11.642578125,104.062080383301 9.9609375,102.937080383301 8.818359375,101.273017883301 8.4375,99.2808303833008 8.818359375,97.2827835083008 9.9609375,95.6011428833008 11.642578125,94.4585647583008 13.640625,94.0777053833008z M9.515625,36.3745803833008L17.578125,36.3745803833008 16.6875,84.6558303833008 10.359375,84.6558303833008 9.515625,36.3745803833008z" />
+						</Path.Data>
+					</Path>
+				</Grid>
+			</Viewbox>
+			<TextBlock Grid.Column="1" Foreground="#FFF40404" Text="Importancia" VerticalAlignment="Center"></TextBlock>
+			<TextBox Grid.Column="2" MinWidth="20" MaxWidth="40" Height="20" FontSize="12" VerticalAlignment="Center" Margin="0"
+								FontWeight="SemiBold" KeyboardNavigation.TabIndex="4"  BorderThickness="0"  
+								Foreground="Red"
+								 Text="{Binding Path=SelectedTask.Ocurrence,
+												Mode=TwoWay,
+												UpdateSourceTrigger=PropertyChanged}" />
+			<TextBlock Grid.Column="3" Foreground="#FFF40404" Text="Pnts" VerticalAlignment="Center"></TextBlock>
+
+			<!-- endregion-->
+	   
+			<!--region Fila de Riezgo-->
+			<Viewbox Grid.Row="1">
+				<Grid Width="38" Height="38" Visibility="Visible">
+					<Path
+						Data="F1M874.094,289.369L854.3,254.63C854.028,254.151 853.515,253.856 852.958,253.856 852.403,253.856 851.89,254.151 851.617,254.63L831.824,289.369C831.555,289.84 831.559,290.416 831.835,290.883 832.111,291.348 832.618,291.634 833.165,291.634L872.752,291.634C873.299,291.634 873.805,291.348 874.081,290.883 874.357,290.416 874.361,289.84 874.094,289.369 M855.653,287.189L850.264,287.189 850.264,282.745 855.653,282.745 855.653,287.189z M855.653,279.41L850.264,279.41 850.264,266.077 855.653,266.077 855.653,279.41z"
+						Stretch="Uniform" Fill="Orange" Width="26" Height="22" Margin="0,0,0,0" />
+				</Grid>
+			</Viewbox>
+			<TextBlock Grid.Row="1" Grid.Column="1" Foreground="Orange" Text="Riezgo" VerticalAlignment="Center"></TextBlock>
+			<TextBox Grid.Row="1"  Grid.Column="2" MinWidth="20" MaxWidth="40" Height="20" FontSize="12" VerticalAlignment="Bottom"
+								 FontWeight="SemiBold"  KeyboardNavigation.TabIndex="5"  BorderThickness="0" 
+					 Foreground="Orange"
+								 Text="{Binding Path=SelectedTask.Risk,
+												Mode=TwoWay,
+												UpdateSourceTrigger=PropertyChanged}" />
+			<TextBlock Grid.Row="1" Grid.Column="3" Foreground="Orange" Text="Pnts" VerticalAlignment="Center"></TextBlock>
+
+			<!--endregion-->
+
+			<!--region Fila Estimado-->
+
+			<Viewbox Grid.Row="2" Margin="10,0,0,0">
+				<Grid Width="35" Height="40" Visibility="Visible">
+					<Path
+						Data="M30.695017,13.620034L33.317017,13.620034 33.317017,28.919743 33.524267,29.019681C34.184819,29.37884,34.712941,29.951163,35.016142,30.643819L35.08231,30.810035 46.039017,30.810035 46.039017,33.432034 34.978114,33.432034 34.889634,33.615611C34.315306,34.672444 33.195316,35.390985 31.908503,35.390985 30.035774,35.390985 28.517994,33.870769 28.517994,32.000501 28.517994,30.5978 29.371745,29.392002 30.588678,28.876772L30.695017,28.837811z M31.999999,4.0299997C16.551,4.0299997 4.0259991,16.55 4.0259991,32.000001 4.0259991,47.450002 16.551,59.969998 31.999999,59.969998 47.448999,59.969998 59.973999,47.450002 59.973999,32.000001 59.973999,16.55 47.448999,4.0299997 31.999999,4.0299997z M31.999999,0C49.672998,0 63.999998,14.33 63.999998,32.000001 63.999998,49.669999 49.672998,64.000001 31.999999,64.000001 14.327,64.000001 0,49.669999 0,32.000001 0,14.33 14.327,0 31.999999,0z"
+						Stretch="Uniform" Fill="#FF397C9E" Width="26" Height="26" Margin="0,0,0,0" />
+				</Grid>
+			</Viewbox>
+			<TextBlock Grid.Row="2" Grid.Column="1" Foreground="#FF397C9E" Text="Estimado" VerticalAlignment="Center"></TextBlock>
+			<TextBox Grid.Row="2" Grid.Column="2" Width="40" MinWidth="20" MaxWidth="40" Height="20" FontSize="12"
+				Foreground="#FF397C9E"
+				VerticalAlignment="Bottom"  FontWeight="SemiBold" 
+				KeyboardNavigation.TabIndex="6"
+				Text="{Binding SelectedTask.EstimatedTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+			<TextBlock Grid.Row="2" Grid.Column="3" Foreground="#FF397C9E" Text="Mnts" VerticalAlignment="Center"></TextBlock>
+			<!--endregion-->
+			
+			<!--region Tiempo Trabajado-->
+			<Viewbox Grid.Row="3">
+				<Grid Width="40" Height="40" Visibility="Visible"/>
+            </Viewbox>
+		<!--endregion-->
+
+			<!--region % Completado-->
+            <!--endregion-->
+
+			<!--region Fila Prioridad-->
+			<TextBlock Grid.Row="5" Grid.Column="1" Foreground="#FFF40404" Text="Prioridad" VerticalAlignment="Center"></TextBlock>
+	
+            <!--<Rectangle Fill="{Binding SelectedTask.CategoryColorBrush}"  Grid.Column="2" Grid.Row="5" />-->
+            <TextBlock Width="24.54"
+							FontSize="21.333"
+							FontWeight="Bold"
+							Grid.Column="2" Grid.Row="5"
+							Foreground="{Binding SelectedTask.CategoryColorBrush}" 
+							Text="{Binding SelectedTask.Problem100}" Height="28.374" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <!--endregion-->
+		</Grid>
+
+
+	</Grid>
+</UserControl>

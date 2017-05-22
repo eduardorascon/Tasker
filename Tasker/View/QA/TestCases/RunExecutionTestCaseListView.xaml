@@ -1,0 +1,133 @@
+﻿<UserControl x:Class="Tasker.View.QA.TestCases.RunExecutionTestCaseListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:classes="clr-namespace:Tasker.Classes"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="500" Width="300">
+
+    <UserControl.DataContext>
+        <Binding Path="RunExecutionTestCaseListViewModel" Source="{StaticResource Locator}" />
+    </UserControl.DataContext>
+
+    <Grid>
+        
+        <Grid>
+
+            <!--#region Dimension -->
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+                <RowDefinition Height="28" />
+                <RowDefinition  />
+            </Grid.RowDefinitions>
+
+            <!--#endregion -->
+
+            <!--#region Title -->
+
+            <Grid Grid.Row="0">
+                <Grid.Background>
+                    <SolidColorBrush Color="{DynamicResource AccentColor}"></SolidColorBrush>
+                </Grid.Background>
+                <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" Text="Test Case List" FontSize="13" FontWeight="SemiBold" />
+            </Grid>
+
+            <!--#endregion -->
+
+            <!--#region Filter -->
+
+            <classes:FilterControl Margin="1" Height="22" Grid.Row="1"
+                               Header="Search item here"
+                               TargetControl="{Binding ElementName=LstItems}"
+                               FilterTextBindingPath="Description">
+                <classes:FilterControl.ListTextBindingPath>
+                    <classes:FilterAdapter Title="Description" PropertyBound="Description" />
+                    <classes:FilterAdapter Title="Objective" PropertyBound="Objetive" />
+                </classes:FilterControl.ListTextBindingPath>
+            </classes:FilterControl>
+
+            <!--#endregion -->
+
+
+            <Grid x:Name="Items" Grid.Row="2">
+
+                <!--#region Dimension -->
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <!--#endregion -->
+
+                <!--#region ListBox -->
+               
+                    <ListBox Grid.Row="1"
+                 Name="ListTestCaseItems"
+                 Background="#4F4F4D4D"
+                 BorderBrush="Transparent"
+                 ItemContainerStyle="{StaticResource RedGlowItemContainer1}"
+                 ItemsSource="{Binding ExecutionDetailList}"
+                 SelectedItem="{Binding SelectedExecutionDetailItem}">
+
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+
+                            <Grid Background="#20A9A9A9" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40" />
+                                    <ColumnDefinition Width="230" />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Column="0" Grid.Row="0"
+                                       VerticalAlignment="Top" 
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,5,0"
+                                       FontSize="12"
+                                       Height="Auto"
+                                       FontWeight="Bold"
+                                       Foreground="{DynamicResource ItemText}"
+                                       Text="{Binding TestCaseId}"
+                                       TextWrapping="Wrap" />
+
+                                <Path x:Name="PathTestPlan" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"
+                                  HorizontalAlignment="Center"
+                                  Data="M14.332999,2.6300001L14.332999,29.276083 14.193704,29.324902C8.1875095,31.513054,3.8918579,37.253048,3.8400002,44.005001L35.327,44.005001C35.276222,37.253048,30.979918,31.513054,24.975439,29.324902L24.834,29.275318 24.834,2.6300001z M10.226677,0L11.98839,0 22.207066,0 26.921402,0 28.437113,0 28.437113,0.24224854 28.437113,1.6582603 28.437113,1.9003897 26.921402,1.9003897 26.921402,2.1465502 26.921402,2.2325401 26.921402,25.849701C34.280754,28.7208 39.500999,35.8731 39.500999,44.25 39.500999,55.158298 30.65723,64 19.750149,64 14.65241,64 10.007775,62.068401 6.5039587,58.900398 2.5077388,55.285198 0,50.060699 0,44.25 0,36.097698 4.9375372,29.101601 11.98839,26.086L11.98839,2.2285805 11.98839,2.1465502 11.98839,1.9003897 10.226677,1.9003897 10.226677,1.6582603 10.226677,0.24224854z"
+                                  Stretch="Uniform" Width="20" Height="20" Margin="5"
+                                  RenderTransformOrigin="0.5,0.5" Fill="DarkOrange" />
+
+                                <TextBlock
+                                Grid.Column="1"
+                                Grid.Row="0"
+                                Margin="0,0,7,0"
+                                VerticalAlignment="Stretch"
+                                Foreground="{DynamicResource ItemText}"
+                                Text="{Binding Description}"
+                                TextWrapping="Wrap" />
+
+                            </Grid>
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding Path=IsActive}" Value="False">
+                                    <Setter TargetName="PathTestPlan" Property="Fill" Value="Gray" />
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+           
+
+                <!--#endregion -->
+
+            </Grid>
+
+        </Grid>
+            
+    </Grid>
+</UserControl>

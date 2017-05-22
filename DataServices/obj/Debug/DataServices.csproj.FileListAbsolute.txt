@@ -1,0 +1,15 @@
+E:\WorkSpace\UTECK\Tasker\DataServices\bin\Debug\DataServices.dll.config
+E:\WorkSpace\UTECK\Tasker\DataServices\bin\Debug\DataServices.dll
+E:\WorkSpace\UTECK\Tasker\DataServices\bin\Debug\DataServices.pdb
+E:\WorkSpace\UTECK\Tasker\DataServices\bin\Debug\Newtonsoft.Json.dll
+E:\WorkSpace\UTECK\Tasker\DataServices\bin\Debug\System.Net.Http.Extensions.dll
+E:\WorkSpace\UTECK\Tasker\DataServices\bin\Debug\System.Net.Http.Formatting.dll
+E:\WorkSpace\UTECK\Tasker\DataServices\bin\Debug\System.Net.Http.Primitives.dll
+E:\WorkSpace\UTECK\Tasker\DataServices\bin\Debug\Newtonsoft.Json.xml
+E:\WorkSpace\UTECK\Tasker\DataServices\bin\Debug\System.Net.Http.Extensions.xml
+E:\WorkSpace\UTECK\Tasker\DataServices\bin\Debug\System.Net.Http.Formatting.xml
+E:\WorkSpace\UTECK\Tasker\DataServices\bin\Debug\System.Net.Http.Primitives.xml
+E:\WorkSpace\UTECK\Tasker\DataServices\obj\Debug\DataServices.csproj.App.config
+E:\WorkSpace\UTECK\Tasker\DataServices\obj\Debug\DataServices.dll
+E:\WorkSpace\UTECK\Tasker\DataServices\obj\Debug\DataServices.pdb
+E:\WorkSpace\UTECK\Tasker\DataServices\obj\Debug\DataServices.csprojResolveAssemblyReference.cache

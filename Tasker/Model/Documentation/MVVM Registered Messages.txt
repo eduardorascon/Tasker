@@ -1,0 +1,81 @@
+﻿MVVM Registered Messages for Tasker Application
+ 
+************************** SETTINGS HACE QUE LA APLICACION HAGA EL PIN **************************
+Messenger.Default.Send(value,"PINWINDOW");
+Messenger.Default.Register<bool>(this, "PINWINDOW", PinUnPinWindow);
+
+
+
+************************** MUESTRA UN MENSAJE EN LA BARRA DE ESTADO Se utiliza el una funcion del Helper para enviar Mensajes ******
+Messenger.Default.Send<String>(message,"STATUS_BAR_MESSAGE");
+Messenger.Default.Register<String>(this,"STATUS_BAR_MESSAGE",CreateStatusMessage);
+
+
+
+************************** REFRESCAR LA LISTA DE ISSUES DEL JIRA *********************************
+Messenger.Default.Send("Refresh", "PRESS_KEY_ISSUE")
+Messenger.Default.Register<string>(this, "PRESS_KEY_ISSUE", ProcessMessenger);
+
+
+
+************************** TAREAS QUE SE HACEN CUANDO SE PRESIONA LAS TECLAS EN LA LISTA DE PENDIENTES ****************** 
+Messenger.Default.Send(funcion,  AppVariables.GetValue<bool>("TASK_TYPE") ? "PRESS_KEY_TASK" : "PRESS_KEY_PENDING_TASK");
+Messenger.Default.Register<string>(this,"PRESS_KEY_PENDING_TASK",ProcessMessenger);
+funcion = F2, NEW, CANCEL etc.
+********* OPERACIONES DE LA LISTA DE PENDIENTES ************************************************************************
+Messenger.Default.Send("Salvar","PENDING_TASK");
+Messenger.Default.Send("Cancelar", "PENDING_TASK");
+Messenger.Default.Send<string>("RemoveTask", "PENDING_TASK");
+Messenger.Default.Register<string>(this, "PENDING_TASK", ProcessMesseger);
+********* REFRESCA LA LISTA DE TAREAS Y PENDIENTES **********************************************************************
+Messenger.Default.Send<string>("Refresh", "PRESS_KEY_TASK");
+Messenger.Default.Register<string>(this, "PRESS_KEY_TASK", ProcessMessenger);
+********* ENVIA Y RECIBE LA TAREA PENDIENTE SELECCIONADA ****************************************************************
+Messenger.Default.Send(SelectedTask);
+SelectedTask = PendingTaskItem
+Messenger.Default.Register<PendingTaskItem>(this, UpdateSelectedTask);
+
+
+
+************************** TAREAS QUE SE HACEN CUANDO SE PRESIONA LAS TECLAS EN LA LISTA DE PENDIENTES ****************** 
+Messenger.Default.Send("Salvar","TASK");
+Messenger.Default.Send("Cancelar", "TASK");
+Messenger.Default.Send("RemoveTask", "TASK");
+Messenger.Default.Register<string>(this,"TASK", ProcessMesseger);
+********* ENVIA Y RECIBE LA TAREA PENDIENTE SELECCIONADA **********************************************************
+Messenger.Default.Send(SelectedTask);
+SelectedTask = TaskItem;
+Messenger.Default.Register<TaskItem>(this, UpdateSelectedTask);
+
+
+
+************************** ACTUALIZA LAS ESTADISTICAS ************************************************************* 
+Messenger.Default.Send("", "UPDATE_STATISTICS");
+Messenger.Default.Register<string>(this,"UPDATE_STATISTICS",UpdateStatistics);
+
+
+************************** ENVIAR Y RECIBE LA TAREA ACTUALMENTE CORRIENDO *****************************************
+Messenger.Default.Send<TaskItem>(RunningTask, "TASKRUNNING");
+Messenger.Default.Register<TaskItem>(this,"TASKRUNNING" ,UpdateSelectedTask);
+
+
+************************** CALCULA EL TIEMPO INVERTIDO POR DIA ****************************************************
+Messenger.Default.Send(TasksList, "SPEND_TIME");
+Messenger.Default.Register<ObservableCollection<TaskItem>>(this, "SPEND_TIME", ProcessMesseger);
+
+
+***************************************************************************************************************
+************************** C A T E G O R I A S    M E S S A G E S     M V V M *********************************
+TOKEN: CATEGORY = Utilizado para las operaciones CRUD
+Messenger.Default.Register<CategoryItem>(this, UpdateSelectedCategory);
+Messenger.Default.Register<string>(this,"CATEGORY", ProcessMesseger);
+********** Mensaje que indica que se debe salir del modo de edicion de categorias ***************************** 
+Messenger.Default.Send("Collapse", "CATEGORY_EDIT_MODE");
+
+*************** TO DO NECESITA VERIFICARASE ***********************************************************************
+Messenger.Default.Register<string>(this, "PRESS_KEY_RELEASE", ProcessMessenger);
+Messenger.Default.Send<string>("Collapse", "ALL_TASK");
+Messenger.Default.Send<string>("Enter");
+Messenger.Default.Send(true,"OVERLAY");
+
+

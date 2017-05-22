@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="Tasker.View.TasksWorkSpaceView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ignore="http://www.ignore.com"
+        xmlns:helpers="clr-namespace:Tasker.Helpers"
+        xmlns:wpf="http://schemas.thinkpixellab.com/2011/xaml/presentation"
+        xmlns:view="clr-namespace:Tasker.View"
+        xmlns:classes="clr-namespace:Tasker.Classes"
+        mc:Ignorable="d ignore"
+        d:DesignWidth="300"
+        d:DesignHeight="400"
+        DataContext="{Binding TasksWorkSpaceViewModel, Source={StaticResource Locator}}">
+    <UserControl.Resources>
+        <helpers:InverseBooleanConverter x:Key="InverseBoolConverter" />
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="300*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <classes:ToolBarButton VerticalAlignment="Top"
+                                   MetroImageSource="{StaticResource appbar_refresh}" ToolTip="Close / Refresh Tasks" 
+                                   IsEnabled="{Binding IsEditMode, Converter={StaticResource InverseBoolConverter}}"
+                                   Command="{Binding RefreshCommand}" Visibility="Collapsed"/>
+         
+        </StackPanel>
+
+        <Grid Grid.Row="0">
+            <Grid.Background>
+                <SolidColorBrush Color="{DynamicResource AccentColor}"></SolidColorBrush>
+            </Grid.Background>
+        <TextBlock  Margin="3,2" Text="My Tasks"  />
+        </Grid>
+
+      <view:TaskListView Grid.Row="3"></view:TaskListView>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,65 @@
+﻿<mvvmLight:ViewBaseEx x:Class="Tasker.View.QA.TestCases.TestCaseView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:mvvmLight="clr-namespace:GalaSoft.MvvmLight"
+                      
+            d:DesignHeight="300" d:DesignWidth="350"
+                      
+             DataContext="{Binding TestCaseViewModel,
+                                   Source={StaticResource Locator}}"
+             FocusManager.FocusedElement="{Binding ElementName=TituloTxt}"
+             mc:Ignorable="d">
+
+    <Grid  Margin="1">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="112*"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0"></RowDefinition>
+            <RowDefinition Height="0"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="2"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <!--#region Label -->
+        <Label VerticalAlignment="Center" Grid.Column="0" Visibility="Collapsed" Grid.Row="0">Test Case Id:</Label>
+        <Label VerticalAlignment="Center" Grid.Column="0" Visibility="Collapsed" Grid.Row="1">Created Date:</Label>
+        <Label VerticalAlignment="Center" Grid.Column="0" Grid.Row="2">Description:</Label>
+        <Label VerticalAlignment="Center" Grid.Column="0" Grid.Row="4">Duration:</Label>
+        <Label VerticalAlignment="Center" Grid.Column="0" Grid.Row="5">Objective:</Label>
+        <Label VerticalAlignment="Center" Grid.Column="0" Grid.Row="7">Test Data:</Label>
+        <Label VerticalAlignment="Center" Grid.Column="0" Grid.Row="9">Pre-Condition:</Label>
+        <Label VerticalAlignment="Center" Grid.Column="0" Grid.Row="11">Test Plan Id:</Label>
+        <!--#endregion -->
+
+        <!--<TextBox Grid.Column="1" Visibility="Collapsed" Grid.Row="0" Height="25" Text ="{Binding SelectedCategory.CategoryId}" IsEnabled ="{Binding SelectedCategory.IsNew}" MaxLength="30"></TextBox>
+        <DatePicker Grid.Column="1" Grid.Row="1" Visibility="Collapsed" Height="25" VerticalAlignment="Top" Margin="0,2,0,0"/>
+        <TextBox  Grid.Row="1" Height="25" Grid.Column="1" Visibility="Collapsed" Text ="{Binding SelectedCategory.CategoryId}" IsEnabled ="{Binding SelectedCategory.IsNew}" ></TextBox>-->
+        
+        <!--#region TextBox -->
+        <TextBox Grid.Row="2" Margin="0,2" TextWrapping="Wrap" Grid.Column="1" Grid.RowSpan="2"  Text="{Binding ReceivedTestCaseItem.Description, Mode=TwoWay}" Width="270"/>
+        <TextBox Grid.Row="4" Width="40" Grid.Column="1" Text ="{Binding ReceivedTestCaseItem.Duration}" HorizontalAlignment="Left" />
+        <TextBox Grid.Row="5" Margin="0,2" TextWrapping="Wrap" Grid.Column="1" Grid.RowSpan="2" Text="{Binding ReceivedTestCaseItem.Objetive, Mode=TwoWay}" Width="270"/>
+        <TextBox Grid.Row="7" Margin="0,2" TextWrapping="Wrap" Grid.Column="1" Grid.RowSpan="2" Text="{Binding ReceivedTestCaseItem.TestData, Mode=TwoWay}" Width="270"/>
+        <TextBox Grid.Row="9"  Margin="0,2" TextWrapping="Wrap" Grid.Column="1" Grid.RowSpan="2" Text="{Binding ReceivedTestCaseItem.PreCondition, Mode=TwoWay}" Width="270"/>
+        <TextBox Grid.Column="1" Grid.Row="11" Height="25" Text ="{Binding SelectedTestPlanId, Mode=TwoWay}" IsReadOnly="True" IsEnabled ="False" MaxLength="50"/>
+        <!--#endregion -->
+        
+    </Grid>
+
+</mvvmLight:ViewBaseEx >
+

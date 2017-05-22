@@ -1,0 +1,10 @@
+grodriguez: 01/23/2017
+
+=== PENDING ===
+[ ] Connect to HelpDesk services
+	http://helpdesk:8080/HomePage.do
+[ ] Add Task Type: Ticket, Bugs, Task etc.
+
+=== DONE ===
+[ ] Connect to HelpDesk services
+[ ] Add Task Type: Ticket, Bugs, Task etc.

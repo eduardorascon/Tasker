@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="Tasker.View.StatusBarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             DataContext="{Binding StatusBar,
+                                   Source={StaticResource Locator}}"
+             mc:Ignorable="d">
+
+    <Grid Height="40">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="16" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <WrapPanel>
+            <!--TODO Cambiar Colores del texto dinamicamente-->
+            <Label Height="16"
+                   Margin="1,1,2,1"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top"
+                   VerticalContentAlignment="Top"
+                   Content="My Spend Time Today:"
+                   FontSize="12"
+                   FontWeight="Bold" 
+                  Foreground="{DynamicResource ItemText}"  />
+            <Label Height="16"
+                   Margin="1,1,4,1"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   VerticalContentAlignment="Center"
+                   Content="{Binding SpendTime}"
+                   FontSize="14"
+                   FontWeight="Bold"
+                   Foreground="{DynamicResource ItemText}" />
+            <Label Height="16"
+                   Margin="1"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   HorizontalContentAlignment="Left"
+                   VerticalContentAlignment="Top"
+                   Content="Hrs"
+                   FontWeight="Bold" 
+                   FontSize="12"
+                   Foreground="{DynamicResource ItemText}"  />
+        </WrapPanel>
+
+        <Grid Grid.Row="1" Margin="1">
+            <WrapPanel x:Name="ProgressStatus"
+                       Height="15"
+                       Width="350"
+                       Background="#4F4F4D4D"
+                       Orientation="Horizontal" />
+        </Grid>
+    </Grid>
+</UserControl>

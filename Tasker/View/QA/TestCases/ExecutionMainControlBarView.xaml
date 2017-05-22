@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="Tasker.View.QA.TestCases.ExecutionMainControlBarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:classes="clr-namespace:Tasker.Classes"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="300">
+
+    <UserControl.DataContext>
+        <Binding Path="ExecutionMainControlBarViewModel" Source="{StaticResource Locator}" />
+    </UserControl.DataContext>
+
+    <Grid>
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+
+            <classes:ToolBarButton VerticalAlignment="Center"
+                                   MetroImageSource="{StaticResource toolbar_new}"
+                                   ToolTip="Create New Execution"
+                                   IsEnabled ="{Binding EnableNew}"
+                                   Command="{Binding NewCommand}"/>
+
+            <classes:ToolBarButton VerticalAlignment="Center"
+                                   MetroImageSource="{StaticResource toolbar_edit}"
+                                   ToolTip="Edit Selected Execution"
+                                   IsEnabled ="{Binding EnableEdit}"
+                                   Command="{Binding EditCommand}"/>
+
+                <classes:ToolBarButton VerticalAlignment="Center"
+                                   MetroImageSource="{StaticResource toolbar_greenplay}" 
+                                   ToolTip="Run Selected Execution"
+                                   IsEnabled ="{Binding EnablePlay}"
+                                   Command="{Binding PlayCommand}"/>
+
+            <classes:ToolBarButton VerticalAlignment="Center"
+                                   MetroImageSource="{StaticResource toolbar_cancel}" 
+                                   ToolTip="Undo Selected Execution" 
+                                   IsEnabled="{Binding EnableCancel}"
+                                   Command="{Binding CancelCommand}"/>
+            
+        </StackPanel>
+    </Grid>
+</UserControl>

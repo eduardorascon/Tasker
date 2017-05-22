@@ -1,0 +1,45 @@
+﻿January 24,2014 =========================
+BUGs Fixed
+Allow edit a closed task.
+
+
+January 22,2014 =========================
+BUGs Fixed
+Allows edit a runnnig task.
+
+New Features
+Automatically close yesterday task.
+
+
+
+
+BUG Reported =============================
+Minimize disable pin window state.
+Maximize disable pin window state.
+Restore enable pin window state if it was active.
+
+!New Feature Comming Soom ================
+Refresh the statistic chart when the tab become active.
+Single instance application.
+Tasks Adjustments 
+Stores the Setting by user
+Create Tasks and Asigned to a team member
+suscribe to a Task for follow.
+
+Working in Progress.
+Adding a Pending Tab.
+Just create the pending task, double click to create a daily task.
+Just a daily task is allowed to create for each day.
+
+
+
+
+Events TAB
+Mostrara los eventos mas cercanos en un periodo de 2 semanas adelante y dos semanas atras.
+Esto debido a que ese es nuestro proceso de scrum por los sprint.
+Debe de poder identificarse con un color gris o algo los procesos que ya pasaron y en colores mas vivos los 
+eventos que vendran.
+debo de poder ver los eventos: Especificos para Mi o para mi equipo independiente de la fecha. por ejemplo la entrega de
+un proyecto o modificacion u compromiso.
+Si es publico pues entra en el esquema de las 2 semanas.
+ 

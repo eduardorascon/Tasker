@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="Tasker.Controls.GanttBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            Loaded="UserControlLoaded" DataContext="{Binding}"
+             mc:Ignorable="d">
+
+
+        <WrapPanel x:Name="GanttGuide" 
+                       MinHeight="15"
+                       MinWidth="200"
+                       Background="#4F4F4D4D"
+                       Orientation="Horizontal">
+            <Rectangle Height="{Binding ElementName=GanttGuide, Path=ActualHeight}" Width="{Binding StartTime }" Fill="Transparent"></Rectangle>
+            <Rectangle Height="{Binding ElementName=GanttGuide, Path=ActualHeight}" Width="{Binding DurationTime }" Fill="Red"></Rectangle>
+        </WrapPanel>
+
+</UserControl>

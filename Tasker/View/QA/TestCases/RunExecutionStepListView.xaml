@@ -1,0 +1,221 @@
+﻿<UserControl x:Class="Tasker.View.QA.TestCases.RunExecutionStepListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:classes="clr-namespace:Tasker.Classes"
+             xmlns:helpers="clr-namespace:Tasker.Helpers"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="500" Width="300">
+    
+
+    <UserControl.DataContext>
+        <Binding Path="RunExecutionStepListViewModel" Source="{StaticResource Locator}" />
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <helpers:RejectToVisibility x:Key="RejectToVisibility" />
+        <helpers:ApproveToVisibility x:Key="ApproveToVisibility"/>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid>
+
+            <!--#region Dimension -->
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+                <RowDefinition Height="28" />
+                <RowDefinition  />
+            </Grid.RowDefinitions>
+
+            <!--#endregion -->
+
+            <!--#region Title -->
+
+            <Grid Grid.Row="0">
+                <Grid.Background>
+                    <SolidColorBrush Color="{DynamicResource AccentColor}"></SolidColorBrush>
+                </Grid.Background>
+                <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" Text="Step List" FontSize="13" FontWeight="SemiBold" />
+            </Grid>
+
+            <!--#endregion -->
+
+            <!--#region Filter -->
+
+            <classes:FilterControl Margin="1" Height="22" Grid.Row="1"
+                               Header="Search item here"
+                               TargetControl="{Binding ElementName=LstItems}"
+                               FilterTextBindingPath="Description">
+                <classes:FilterControl.ListTextBindingPath>
+                    <classes:FilterAdapter Title="Description" PropertyBound="Description" />
+                    <classes:FilterAdapter Title="Objective" PropertyBound="Objetive" />
+                </classes:FilterControl.ListTextBindingPath>
+            </classes:FilterControl>
+
+            <!--#endregion -->
+
+            <Grid x:Name="Items" Grid.Row="2">
+
+                <!--#region Dimension -->
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <!--#endregion -->
+
+                <!--#region ListBox -->
+
+                <ListBox Grid.Row="1"
+                 Name="ListTestCaseItems"
+                 Background="#4F4F4D4D"
+                 BorderBrush="Transparent"
+                 ItemContainerStyle="{StaticResource RedGlowItemContainer1}"
+                 ItemsSource="{Binding StepList}"
+                 SelectedItem="{Binding SelectedStepItem}">
+
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+
+                            <Grid Background="#20A9A9A9" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40" />
+                                    <ColumnDefinition Width="230" />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition Height="30"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock 
+                                    Grid.Column="0" Grid.Row="0"
+                                    VerticalAlignment="Top" 
+                                    HorizontalAlignment="Center"
+                                    Margin="0,0,5,0"
+                                    FontSize="12"
+                                    Height="Auto"
+                                    FontWeight="Bold"
+                                    Foreground="{DynamicResource ItemText}"
+                                    Text="{Binding StepId}"
+                                    TextWrapping="Wrap" />
+
+                                <TextBlock
+                                    Grid.Column="1"
+                                    Grid.Row="0"
+                                    Margin="0,0,7,0"
+                                    VerticalAlignment="Stretch"
+                                    Foreground="{DynamicResource ItemText}"
+                                    Text="{Binding Description}"
+                                    TextWrapping="Wrap" />
+
+
+                                <TextBlock
+                                Grid.Column="1"
+                                Grid.Row="1"
+                                Margin="0,0,7,0"
+                                VerticalAlignment="Stretch"
+                                Foreground="{DynamicResource ItemText}"
+                                Text="{Binding ApprovedReject}"
+                                TextWrapping="Wrap" />
+
+                                <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+
+                                            <Path x:Name="History1Approve" 
+                                                  Grid.Row="1" Grid.Column="1" Visibility="{Binding History1, Converter={StaticResource ApproveToVisibility}}"
+									              Data ="M-150.204,626.126C-152.317,626.126 -154.429,626.126 -156.541,626.126 -167.642,633.42 -180.629,646.047 -189.668,657.238 -190.916,658.782 -192.945,662.362 -193.701,662.422 -194.041,662.448 -198.024,659.719 -198.614,659.297 -202.818,656.279 -205.779,653.709 -209.257,650.899 -211.248,652.172 -212.879,653.805 -214.153,655.797 -206.627,665.074 -200.283,675.534 -193.124,685.18 -181.491,665.11 -168.473,644.683 -152.796,629.006 -151.735,627.946 -149.817,626.933 -150.204,626.126z" 
+									              HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Width="15" Height="15" Margin="1,1,1,1" RenderTransformOrigin="0.5,0.5" Fill="Green">
+                                            </Path>
+                                    
+                                            <Path x:Name="History1Reject" 
+                                                  Grid.Row="1" Grid.Column="1" Visibility="{Binding History1, Converter={StaticResource RejectToVisibility}}"
+									              Data ="F1M54.0573,47.8776L38.1771,31.9974 54.0547,16.1198C55.7604,14.4141 55.7604,11.6511 54.0573,9.94531 52.3516,8.23962 49.5859,8.23962 47.8802,9.94531L32.0026,25.8229 16.1224,9.94531C14.4167,8.23962 11.6511,8.23962 9.94794,9.94531 8.24219,11.6511 8.24219,14.4141 9.94794,16.1198L25.8255,32 9.94794,47.8776C8.24219,49.5834 8.24219,52.3477 9.94794,54.0534 11.6511,55.7572 14.4167,55.7585 16.1224,54.0534L32.0026,38.1745 47.8802,54.0534C49.5859,55.7585 52.3516,55.7572 54.0573,54.0534 55.7604,52.3477 55.763,49.5834 54.0573,47.8776z" 
+									              HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Width="15" Height="15" Margin="1,1,1,1" RenderTransformOrigin="0.5,0.5" Fill="Red">
+                                            </Path>
+
+
+                                    <Path x:Name="History2Approve" 
+                                          Grid.Row="1" Grid.Column="1" Visibility="{Binding History2, Converter={StaticResource ApproveToVisibility}}"
+									      Data ="M-150.204,626.126C-152.317,626.126 -154.429,626.126 -156.541,626.126 -167.642,633.42 -180.629,646.047 -189.668,657.238 -190.916,658.782 -192.945,662.362 -193.701,662.422 -194.041,662.448 -198.024,659.719 -198.614,659.297 -202.818,656.279 -205.779,653.709 -209.257,650.899 -211.248,652.172 -212.879,653.805 -214.153,655.797 -206.627,665.074 -200.283,675.534 -193.124,685.18 -181.491,665.11 -168.473,644.683 -152.796,629.006 -151.735,627.946 -149.817,626.933 -150.204,626.126z" 
+									      HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Width="15" Height="15" Margin="1,1,1,1" RenderTransformOrigin="0.5,0.5" Fill="Green">
+                                    </Path>
+                                    
+
+                                    <Path x:Name="History2Reject" 
+                                          Grid.Row="1" Grid.Column="1" Visibility="{Binding History2, Converter={StaticResource RejectToVisibility}}"
+									      Data ="F1M54.0573,47.8776L38.1771,31.9974 54.0547,16.1198C55.7604,14.4141 55.7604,11.6511 54.0573,9.94531 52.3516,8.23962 49.5859,8.23962 47.8802,9.94531L32.0026,25.8229 16.1224,9.94531C14.4167,8.23962 11.6511,8.23962 9.94794,9.94531 8.24219,11.6511 8.24219,14.4141 9.94794,16.1198L25.8255,32 9.94794,47.8776C8.24219,49.5834 8.24219,52.3477 9.94794,54.0534 11.6511,55.7572 14.4167,55.7585 16.1224,54.0534L32.0026,38.1745 47.8802,54.0534C49.5859,55.7585 52.3516,55.7572 54.0573,54.0534 55.7604,52.3477 55.763,49.5834 54.0573,47.8776z" 
+									      HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Width="15" Height="15" Margin="1,1,1,1" RenderTransformOrigin="0.5,0.5" Fill="Red">
+                                    </Path>
+                                    
+                                    <Path x:Name="History3Approve" 
+                                          Grid.Row="1" Grid.Column="1" Visibility="{Binding History3, Converter={StaticResource ApproveToVisibility}}"
+									      Data ="M-150.204,626.126C-152.317,626.126 -154.429,626.126 -156.541,626.126 -167.642,633.42 -180.629,646.047 -189.668,657.238 -190.916,658.782 -192.945,662.362 -193.701,662.422 -194.041,662.448 -198.024,659.719 -198.614,659.297 -202.818,656.279 -205.779,653.709 -209.257,650.899 -211.248,652.172 -212.879,653.805 -214.153,655.797 -206.627,665.074 -200.283,675.534 -193.124,685.18 -181.491,665.11 -168.473,644.683 -152.796,629.006 -151.735,627.946 -149.817,626.933 -150.204,626.126z" 
+									      HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Width="15" Height="15" Margin="1,1,1,1" RenderTransformOrigin="0.5,0.5" Fill="Green">
+                                    </Path>
+
+                                    <Path x:Name="History3Reject" 
+                                          Grid.Row="1" Grid.Column="1" Visibility="{Binding History3, Converter={StaticResource RejectToVisibility}}"
+									      Data ="F1M54.0573,47.8776L38.1771,31.9974 54.0547,16.1198C55.7604,14.4141 55.7604,11.6511 54.0573,9.94531 52.3516,8.23962 49.5859,8.23962 47.8802,9.94531L32.0026,25.8229 16.1224,9.94531C14.4167,8.23962 11.6511,8.23962 9.94794,9.94531 8.24219,11.6511 8.24219,14.4141 9.94794,16.1198L25.8255,32 9.94794,47.8776C8.24219,49.5834 8.24219,52.3477 9.94794,54.0534 11.6511,55.7572 14.4167,55.7585 16.1224,54.0534L32.0026,38.1745 47.8802,54.0534C49.5859,55.7585 52.3516,55.7572 54.0573,54.0534 55.7604,52.3477 55.763,49.5834 54.0573,47.8776z" 
+									      HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Uniform" Width="15" Height="15" Margin="1,1,1,1" RenderTransformOrigin="0.5,0.5" Fill="Red">
+                                    </Path>
+
+                                </StackPanel>
+
+                                <!--<Grid 
+                                    Grid.Column="1"
+                                    Grid.Row="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60" />
+                                        <ColumnDefinition Width="60" />
+                                        <ColumnDefinition Width="60" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition Height="10" />
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock
+                                        Grid.Column="0" Grid.Row="0"
+                                        HorizontalAlignment="Center"
+                                        Foreground="{DynamicResource ItemText}"
+                                        Text="{Binding History1}"/>
+
+                                    <TextBlock
+                                         Grid.Column="1" Grid.Row="0"
+                                        HorizontalAlignment="Center"
+                                        Foreground="{DynamicResource ItemText}"
+                                        Text="{Binding History2}"/>
+
+                                    <TextBlock
+                                        Grid.Column="2" Grid.Row="0"
+                                        HorizontalAlignment="Center"
+                                        Foreground="{DynamicResource ItemText}"
+                                        Text="{Binding History3}"/>
+
+                                    <Grid Grid.Row="1" Grid.Column="0" Background="Green" Margin="2"/>
+                                    <Grid Grid.Row="1" Grid.Column="1" Background="Red" Margin="2"/>
+                                    <Grid Grid.Row="1" Grid.Column="2" Background="Green" Margin="2"/>
+
+                                </Grid>-->
+
+                                
+
+                            </Grid>
+
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <!--#endregion -->
+
+            </Grid>
+
+        </Grid>
+
+    </Grid>
+</UserControl>

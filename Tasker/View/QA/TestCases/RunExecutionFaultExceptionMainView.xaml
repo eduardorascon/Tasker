@@ -1,0 +1,130 @@
+﻿<UserControl x:Class="Tasker.View.QA.TestCases.RunExecutionFaultExceptionMainView"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:classes="clr-namespace:Tasker.Classes"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:QA="clr-namespace:Tasker.View.QA.TestCases"
+			 mc:Ignorable="d" 
+			 d:DesignHeight="500" d:DesignWidth="500">
+
+	<UserControl.DataContext>
+		<Binding Path="RunExecutionFaultExceptionMainViewModel" Source="{StaticResource Locator}" />
+	</UserControl.DataContext>
+
+	<Grid>
+
+        <Grid Background="White">
+
+			<!--#region Dimension -->
+
+			<Grid.RowDefinitions>
+				<RowDefinition Height="20" />
+				<RowDefinition Height="28"/>
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
+
+			<!--#endregion -->
+
+			<!--#region Title -->
+
+			<Grid Grid.Row="0" Grid.ColumnSpan="3">
+				<Grid.Background>
+					<SolidColorBrush Color="{DynamicResource AccentColor}"></SolidColorBrush>
+				</Grid.Background>
+				<TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" Text="Fault result" FontSize="13" FontWeight="SemiBold" />
+			</Grid>
+
+			<!--#endregion -->
+
+			<!--#region  ControlBar-->
+
+			<Grid x:Name="ControlBar" 
+			  Grid.Row="1" 
+			  VerticalAlignment="Top"
+			  Margin="5">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="100" MinWidth="100"/>
+					<ColumnDefinition/>
+				</Grid.ColumnDefinitions>
+				<QA:RunExecutionFaultExceptionControlBarView/>
+			</Grid>
+
+			<!--#endregion -->
+
+			<!--#region Detail -->
+
+			<Grid Grid.Row="2">
+				<!--#region Dimension -->
+				<Grid.RowDefinitions>
+					<RowDefinition Height="30"/>
+					<RowDefinition Height="60"/>
+					<RowDefinition Height="30"/>
+					<RowDefinition Height="*"/>
+				</Grid.RowDefinitions>
+				<!--#endregion -->
+
+				<!--#region TextBlock -->
+				
+				<TextBlock VerticalAlignment="Center"  Text="Observation:" Margin="5"/>
+				
+				<StackPanel Grid.Row="2" Orientation="Horizontal">
+					<TextBlock Text="Capture Image" Margin="5"/>
+					<classes:ToolBarButton 
+						VerticalAlignment="Center"
+						HorizontalAlignment="Left"
+						Grid.Column="1"
+						Margin="0,5,5,5"
+						MetroImageSource="{StaticResource toolbar_imageattach}"
+						ToolTip="Select an Image"
+						IsEnabled ="{Binding EnableAttachImage}"
+						Command="{Binding AttachImageCommand}"/>
+
+					<classes:ToolBarButton 
+						VerticalAlignment="Center"
+						HorizontalAlignment="Left"
+						Grid.Column="2"
+					
+						Margin="0,5,5,5"
+						MetroImageSource="{StaticResource toolbar_clipboard}"
+						ToolTip="Copy for Snipping Tool"
+						IsEnabled ="{Binding EnableAttachImage}"
+						Command="{Binding CopyFromClipBoardCommand}"/>
+				</StackPanel>
+				
+				<!--#endregion -->
+
+				<!--#region TextBox -->
+
+                <TextBox Grid.Row="1" Margin="5" TextWrapping="Wrap" Text="{Binding FaultExecution.Comment,Mode=TwoWay}"/>
+
+				<!--#endregion -->
+
+				<!-- Region Image -->
+				<ScrollViewer
+				        Grid.Row="3"
+						Height="300"
+						Width="490"
+				        Grid.ColumnSpan="2"
+				        HorizontalAlignment="Center" 
+				        VerticalAlignment="Center">
+                    
+					<Image 
+                        Margin="5"
+				        x:Name="imagebox"
+				        Source="{Binding ImageSourceProp}"/>
+				</ScrollViewer>
+
+				<!-- EndRegion -->
+
+
+			</Grid>
+
+			<!--#endregion -->
+
+		</Grid>
+
+	</Grid>
+
+
+</UserControl>

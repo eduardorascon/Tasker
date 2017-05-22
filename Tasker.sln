@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26020.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasker", "Tasker\Tasker.csproj", "{3D48A30F-99B4-4692-98E8-E73EC73EE7E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataServices", "DataServices\DataServices.csproj", "{3135C023-F081-4432-8FFA-0444CA6AC81E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{587C89C3-E654-48ED-AA24-440BF80888C1}"
+	ProjectSection(SolutionItems) = preProject
+		Features.txt = Features.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3D48A30F-99B4-4692-98E8-E73EC73EE7E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D48A30F-99B4-4692-98E8-E73EC73EE7E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D48A30F-99B4-4692-98E8-E73EC73EE7E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D48A30F-99B4-4692-98E8-E73EC73EE7E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3135C023-F081-4432-8FFA-0444CA6AC81E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3135C023-F081-4432-8FFA-0444CA6AC81E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3135C023-F081-4432-8FFA-0444CA6AC81E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3135C023-F081-4432-8FFA-0444CA6AC81E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://172.19.10.226:8080/tfs/ctscollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Tasker\\Tasker.csproj
+		SccProjectName1 = Tasker
+		SccLocalPath1 = Tasker
+		SccProjectUniqueName2 = DataServices\\DataServices.csproj
+		SccProjectName2 = DataServices
+		SccLocalPath2 = DataServices
+	EndGlobalSection
+	GlobalSection(CodealikeProperties) = postSolution
+		SolutionGuid = 8494458f-851f-4f51-8527-55bda2d83697
+	EndGlobalSection
+EndGlobal

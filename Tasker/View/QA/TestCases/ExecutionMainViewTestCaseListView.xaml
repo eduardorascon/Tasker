@@ -1,0 +1,148 @@
+﻿<UserControl x:Class="Tasker.View.QA.TestCases.ExecutionMainViewTestCaseListView"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:classes="clr-namespace:Tasker.Classes"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 mc:Ignorable="d" 
+			 d:DesignHeight="300" d:DesignWidth="300">
+	<UserControl.DataContext>
+		<Binding Path="ExecutionMainViewTestCaseListViewModel" Source="{StaticResource Locator}"/>
+	</UserControl.DataContext>
+
+	<Grid>
+		<!--#region Dimension -->
+
+		<Grid.RowDefinitions>
+			<RowDefinition Height="20" />
+			<RowDefinition Height="28" />
+			<RowDefinition  />
+		</Grid.RowDefinitions>
+
+		<!--#endregion -->
+
+		<!--#region FilterContorl -->
+
+		<classes:FilterControl  Margin="1" Height="22" Header="Search"
+							Grid.Row="1"    
+							TargetControl="{Binding ElementName=ListTestCaseItems}"
+							FilterTextBindingPath="Description">
+			<classes:FilterControl.ListTextBindingPath>
+				<classes:FilterAdapter Title="Description" PropertyBound="Description"/>
+			</classes:FilterControl.ListTextBindingPath>
+		</classes:FilterControl>
+
+		<!--#endregion -->
+
+		<!--#region Title -->
+
+		<Grid Grid.Row="0">
+			<Grid.Background>
+				<SolidColorBrush Color="{DynamicResource AccentColor}"></SolidColorBrush>
+			</Grid.Background>
+			<TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" Text="Item for Execution" FontSize="13" FontWeight="SemiBold" />
+		</Grid>
+
+		<!--#endregion -->
+
+		<ScrollViewer VerticalScrollBarVisibility="Visible" Grid.Row="2">
+			<Grid x:Name="Items" >
+
+				<!--#region Dimension -->
+
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="*" />
+				</Grid.RowDefinitions>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+				<!--#endregion -->
+
+				<!--#region ListBox -->
+
+				<ListBox Grid.Row="1"
+				 Name="ListTestCaseItems"
+				 Background="#4F4F4D4D"
+				 BorderBrush="Transparent"
+				 ItemContainerStyle="{StaticResource RedGlowItemContainer1}"
+				 ItemsSource="{Binding ExecutionDetailListItem}"
+				 SelectedItem="{Binding ExecutionDetailItem}">
+
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+
+							<Grid Background="#20A9A9A9"
+								HorizontalAlignment="Left"
+								VerticalAlignment="Center"			
+								Width="320">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="40" />
+									<ColumnDefinition />
+								</Grid.ColumnDefinitions>
+
+								<Grid.RowDefinitions>
+									<RowDefinition />
+									<RowDefinition />
+								</Grid.RowDefinitions>
+
+								<TextBlock Grid.Column="0" Grid.Row="0"
+									   VerticalAlignment="Top" 
+									   HorizontalAlignment="Center"
+									   Margin="0,0,7,0"
+									   FontSize="12"
+									   Height="Auto"
+									   FontWeight="Bold"
+									   Foreground="{DynamicResource ItemText}"
+									   Text="{Binding TestCaseId}"
+									   TextWrapping="Wrap" />
+
+
+								<Path x:Name="PathTestPlan" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"
+								  HorizontalAlignment="Center"
+								  Data="M14.332999,2.6300001L14.332999,29.276083 14.193704,29.324902C8.1875095,31.513054,3.8918579,37.253048,3.8400002,44.005001L35.327,44.005001C35.276222,37.253048,30.979918,31.513054,24.975439,29.324902L24.834,29.275318 24.834,2.6300001z M10.226677,0L11.98839,0 22.207066,0 26.921402,0 28.437113,0 28.437113,0.24224854 28.437113,1.6582603 28.437113,1.9003897 26.921402,1.9003897 26.921402,2.1465502 26.921402,2.2325401 26.921402,25.849701C34.280754,28.7208 39.500999,35.8731 39.500999,44.25 39.500999,55.158298 30.65723,64 19.750149,64 14.65241,64 10.007775,62.068401 6.5039587,58.900398 2.5077388,55.285198 0,50.060699 0,44.25 0,36.097698 4.9375372,29.101601 11.98839,26.086L11.98839,2.2285805 11.98839,2.1465502 11.98839,1.9003897 10.226677,1.9003897 10.226677,1.6582603 10.226677,0.24224854z"
+								  Stretch="Uniform" Width="20" Height="20" Margin="5"
+								  RenderTransformOrigin="0.5,0.5" Fill="DarkOrange" />
+
+
+								<TextBlock
+								Grid.Column="1"
+								Grid.Row="0"
+								Margin="0,0,7,0"
+								VerticalAlignment="Stretch"
+								Foreground="{DynamicResource ItemText}"
+								Text="{Binding Description}"
+								TextWrapping="Wrap" />
+
+								<!--<Path x:Name="PathGoal" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"
+								  HorizontalAlignment="left"
+									Data="M22.659951,40.974998C22.983554,40.974998 23.295458,41.114294 23.516061,41.357786 23.735563,41.600578 23.839665,41.915768 23.807164,42.245756L22.764152,52.838001C22.717351,53.319685 22.305046,53.580076 21.941242,53.580076 21.75114,53.580076 21.570238,53.51368 21.419136,53.387383L19.109209,51.451847C18.889806,51.268953 18.625503,51.173958 18.344199,51.173958 17.987995,51.173958 17.652791,51.330751 17.424888,51.603542L12.016624,58.224421C11.66772,58.641706 11.151414,58.881998 10.602508,58.881998 10.170403,58.881998 9.7503672,58.729605 9.4183331,58.451612L9.0576086,58.149622C8.2776995,57.497244,8.1741781,56.330584,8.8284864,55.550009L14.237451,48.926533C14.656655,48.42255,14.589555,47.666275,14.085649,47.245588L11.794022,45.325754C11.556318,45.12726 11.453617,44.82827 11.517919,44.524981 11.583019,44.22179 11.799122,43.990599 12.097425,43.906502L22.342347,41.019299C22.447148,40.989899,22.553949,40.974998,22.659951,40.974998z M31.99905,23.26C36.817588,23.26 40.738998,27.18109 40.738998,32.000553 40.738998,36.818813 36.817588,40.74 31.99905,40.74 29.992594,40.74 28.032136,40.040722 26.477392,38.773858 26.185783,38.526567 25.799673,38.133175 25.545166,37.870983L25.454563,37.778388C24.041923,36.183333 23.257999,34.12809 23.257999,32.000553 23.2605,27.18109 27.181312,23.26 31.99905,23.26z M31.997349,11.954C43.051697,11.954 52.045998,20.946867 52.045998,32.00095 52.045998,43.051832 43.051697,52.044701 31.997349,52.048 30.375612,52.0474 28.742076,51.841599 27.143639,51.435396 26.103416,51.171093 25.430801,50.142385 25.544104,48.986877L25.665307,47.769369C25.730908,47.096764 26.301321,46.58906 26.990737,46.58906 27.13214,46.58906 27.273243,46.61116 27.409946,46.65486 28.889179,47.124863 30.431613,47.364365 31.996049,47.367565 40.455839,47.353966 47.350594,40.459414 47.366093,32.00095 47.350594,23.541287 40.455839,16.648035 31.998049,16.634335 23.541459,16.648035 16.648104,23.541287 16.630504,31.99975 16.634404,34.025765 17.035413,36.00618 17.82253,37.887794 18.021035,38.362998 18.014735,38.904802 17.80563,39.338406 17.683228,39.589506 17.439722,39.917709 16.966411,40.051111L15.875288,40.359114C15.677983,40.415113 15.474178,40.442413 15.270474,40.442413 14.363553,40.442413 13.572435,39.907309 13.255428,39.076603 12.390809,36.810987 11.951999,34.430669 11.951999,32.00095 11.9526,20.948867 20.945001,11.9558 31.997349,11.954z M31.9975,0C49.641457,0.0020751953 63.997002,14.3569 63.999001,31.9988 63.997002,49.6434 49.641457,63.9988 31.9975,64.000002 26.389383,64.000002 20.869165,62.5236 16.032549,59.729898 15.651749,59.510599 15.400448,59.1499 15.322948,58.712999 15.241548,58.252699 15.370548,57.778002 15.676549,57.412199L16.343251,56.617201C16.768952,56.110201 17.396554,55.818499 18.065756,55.818499 18.438057,55.818499 18.809359,55.911501 19.137959,56.088099 19.843262,56.4657 20.564564,56.811899 21.282066,57.118601 22.643371,57.701899 24.065775,58.177198 25.505979,58.529402 27.629686,59.0502 29.812593,59.316599 31.996201,59.320398 47.035347,59.293798 59.290485,47.037201 59.317287,31.9995 59.290485,16.9616 47.035347,4.7071495 31.9982,4.6804199 16.962953,4.7071495 4.7070446,16.9616 4.6784248,31.9975 4.685564,35.907001 5.5032463,39.687 7.1094627,43.2351 7.2962227,43.6387 8.2409353,45.459101 8.2409353,45.459101 8.6855764,46.239 9.1628084,46.9916 9.6654997,47.7097 10.328132,48.655201 10.309332,49.8927 9.6178894,50.718901L8.9349079,51.535299C8.6367464,51.892 8.1914349,52.1042 7.743434,52.1042 7.3321123,52.1042 6.9694405,51.9291 6.7233505,51.6108 2.3874569,46.0294 0,39.0632 0,31.9988 0,14.3569 14.353644,0.0020751953 31.9975,0z"
+								Stretch="Uniform" Width="15" Height="15" Margin="5,0,5,5"
+								  RenderTransformOrigin="0.5,0.5" Fill="{DynamicResource ItemText}" />-->
+
+								<TextBlock Grid.Row="1"
+									   Grid.Column="1"
+									   Margin="28,0,0,5"
+									   VerticalAlignment="Stretch"
+									   FontSize="10"
+									   Foreground="{DynamicResource ItemText}"
+									   Text="{Binding Objetive }"
+									   TextWrapping="Wrap" />
+							</Grid>
+							<DataTemplate.Triggers>
+								<DataTrigger Binding="{Binding Path=IsActive}" Value="False">
+									<Setter TargetName="PathTestPlan" Property="Fill" Value="Gray" />
+								</DataTrigger>
+							</DataTemplate.Triggers>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+
+				<!--#endregion -->
+
+			</Grid>
+		</ScrollViewer>
+	</Grid>
+</UserControl>

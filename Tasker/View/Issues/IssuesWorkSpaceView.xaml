@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="Tasker.View.IssuesWorkSpaceView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ignore="http://www.ignore.com"
+        xmlns:helpers="clr-namespace:Tasker.Helpers"
+        xmlns:wpf="http://schemas.thinkpixellab.com/2011/xaml/presentation"
+        xmlns:view="clr-namespace:Tasker.View"
+        xmlns:classes="clr-namespace:Tasker.Classes"
+        mc:Ignorable="d ignore"
+        d:DesignWidth="300"
+        d:DesignHeight="400"
+        DataContext="{Binding IssuesWorkSpaceViewModel, Source={StaticResource Locator}}">
+    <UserControl.Resources>
+        <helpers:InverseBooleanConverter x:Key="InverseBoolConverter" />
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="300*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <classes:ToolBarButton VerticalAlignment="Top"
+                                   MetroImageSource="{StaticResource appbar_refresh}" ToolTip="Refresh JIRA Issues" 
+                                   IsEnabled="{Binding IsEditMode, Converter={StaticResource InverseBoolConverter}}"
+                                   Command="{Binding RefreshIssuesCommand}"/>
+         
+        </StackPanel>
+
+        <Grid Grid.Row="0">
+            <Grid.Background>
+                <SolidColorBrush Color="{DynamicResource AccentColor}"></SolidColorBrush>
+            </Grid.Background>
+        <TextBlock  Margin="3,2" Text="My JIRA issues"  />
+        </Grid>
+
+        <Border  x:Name="RevealContainer"
+                Grid.Row="2"
+                Background="#3FD2D2D2">
+            <wpf:Reveal x:Name="CategoryDetailsReveal"
+                        Duration="150"                       
+                          IsExpanded="{Binding IsEditMode}" >
+                <view:CategoryView x:Name="OCategoryView" Height="160" />
+            </wpf:Reveal>
+        </Border>
+        
+        <view:IssueListView Grid.Row="3"></view:IssueListView>
+
+    </Grid>
+</UserControl>

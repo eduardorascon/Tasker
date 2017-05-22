@@ -1,0 +1,309 @@
+﻿<UserControl x:Class="SLTaskList.View.StatisticsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vc="clr-namespace:Visifire.Charts;assembly=WPFVisifire.Charts"
+             xmlns:classes="clr-namespace:Tasker.Classes"
+             xmlns:helpers="clr-namespace:Tasker.Helpers"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
+             DataContext="{Binding StatisticsViewModel,
+                                   Source={StaticResource Locator}}"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <helpers:InverseBooleanConverter x:Key="InverseBoolConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="360" />
+            <ColumnDefinition Width="720" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="225*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <classes:ToolBarButton VerticalAlignment="Top"
+                                   MetroImageSource="{StaticResource toolbar_new}" ToolTip="Add a new Category" 
+                                   IsEnabled="{Binding IsEditMode, Converter={StaticResource InverseBoolConverter}}"
+                                   Command="{Binding AddCategoryCommand}"/>
+            <classes:ToolBarButton VerticalAlignment="Top"
+                                   MetroImageSource="{StaticResource toolbar_edit}" ToolTip="Edit Category"
+                                   IsEnabled="{Binding IsEditMode, Converter={StaticResource InverseBoolConverter}}"
+                                   Command="{Binding EditCategoryCommand}"/>
+            <classes:ToolBarButton VerticalAlignment="Top"
+                                   MetroImageSource="{StaticResource toolbar_save}" ToolTip="Save Category changes"
+                                   IsEnabled ="{Binding IsEditMode}"
+                                   Command="{Binding SaveCategoryCommand}"/>
+
+            <classes:ToolBarButton VerticalAlignment="Top"
+                                   MetroImageSource="{StaticResource toolbar_cancel}" ToolTip="Cancel" 
+                                   IsEnabled="{Binding IsEditMode}"
+                                   Command="{Binding CancelEditCategoryCommand}"/>
+            <classes:ToolBarButton VerticalAlignment="Top"
+                                   IsEnabled="{Binding IsEditMode, Converter={StaticResource InverseBoolConverter}}"
+                                   MetroImageSource="{StaticResource toolbar_switch}" ToolTip="Enable / Disable Category" 
+                                   Command="{Binding ActivateCategoryCommand}"/>
+        </StackPanel>
+
+        <Grid Grid.Row="0">
+            <Grid.Background>
+                <SolidColorBrush Color="{DynamicResource AccentColor}"></SolidColorBrush>
+            </Grid.Background>
+            <TextBlock  Margin="3,2" Text="My Statistics"  />
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <StackPanel Margin="5,0" Orientation="Horizontal">
+                <StackPanel>
+                    <TextBlock Text="Start Date" />
+                    <DatePicker Width="90" Margin="2,2" BorderThickness="0"
+                                KeyboardNavigation.TabIndex="2"
+                                Text="{Binding StartDate, Mode=TwoWay}" Height="25" />
+
+                </StackPanel>
+
+                <StackPanel>
+                    <TextBlock Text="End Date" />
+                    <DatePicker Width="90" Margin="2,2" BorderThickness="0"
+                                KeyboardNavigation.TabIndex="2"
+                                Text="{Binding EndDate, Mode=TwoWay}" Height="25" />
+
+                </StackPanel>
+
+                <StackPanel>
+                    <TextBlock Text="Team Member" />
+                    <ComboBox Width="90" Margin="2,2" BorderThickness="0"
+                                KeyboardNavigation.TabIndex="2" Height="25"></ComboBox>
+
+                </StackPanel>
+
+            </StackPanel>
+        </Grid>
+
+        <ScrollViewer Grid.Row="3" Grid.Column="0">
+            <StackPanel Orientation="Vertical">
+                <!--region YTD by Category-->
+                <Grid>
+                    <vc:Chart
+                        Width="350"
+                        Height="300"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Background="Transparent"
+                        BorderThickness="0">
+
+                        <vc:Chart.PlotArea>
+                            <vc:PlotArea Background="Transparent" />
+                        </vc:Chart.PlotArea>
+
+                        <vc:Chart.Titles>
+                            <vc:Title Text="YTD by Categories" />
+                        </vc:Chart.Titles>
+
+                        <vc:Chart.Series>
+
+                            <vc:DataSeries Bevel="false"
+                                           BorderColor="WhiteSmoke"
+                                           Cursor="Hand"
+                                           DataSource="{Binding CategoriesYTD.Categories}"
+                                           IncludePercentageInLegend="True"
+                                           LabelEnabled="False"
+                                           LabelFontColor="White"
+                                           LabelFontFamily="Segoe UI"
+                                           LabelFontSize="13"
+                                           LabelFontWeight="Bold"
+                                           LabelText=" #AxisXLabel"
+                                           LegendMarkerColor="White"
+                                           LightingEnabled="False"
+                                           PercentageFormatString="#0.00"
+                                           RenderAs="Bar"
+                                           ShadowEnabled="false"
+                                           ShowInLegend="False"
+                                           YValueFormatString="######.## 'Hrs'">
+
+                                <vc:DataSeries.DataMappings>
+                                    <vc:DataMapping MemberName="AxisXLabel" Path="Category" />
+                                    <vc:DataMapping MemberName="YValue" Path="DataPointValue" />
+                                    <vc:DataMapping MemberName="Exploded" Path="Exploded" />
+                                    <vc:DataMapping MemberName="Color" Path="CategoryColorBrush" />
+                                </vc:DataSeries.DataMappings>
+
+                            </vc:DataSeries>
+                        </vc:Chart.Series>
+                    </vc:Chart>
+                </Grid>
+                <!--endregion-->
+
+                <!--region Categories-->
+                <Grid>
+                    <vc:Chart
+                        Width="350"
+                        Height="300"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Background="Transparent"
+                        BorderThickness="0">
+
+                        <vc:Chart.PlotArea>
+                            <vc:PlotArea Background="Transparent" />
+                        </vc:Chart.PlotArea>
+
+                        <vc:Chart.Titles>
+                            <vc:Title Text="Categories" />
+                            <vc:Title Text="Start Date:" FontSize="10" />
+                            <vc:Title Text="{Binding StartDate}" FontSize="10" />
+
+                        </vc:Chart.Titles>
+
+                        <vc:Chart.Series>
+
+                            <vc:DataSeries Bevel="false"
+                                           BorderColor="WhiteSmoke"
+                                           Cursor="Hand"
+                                           DataSource="{Binding PieRange.Categories}"
+                                           IncludePercentageInLegend="True"
+                                           LabelEnabled="False"
+                                           LabelFontColor="White"
+                                           LabelFontFamily="Segoe UI"
+                                           LabelFontSize="13"
+                                           LabelFontWeight="Bold"
+                                           LabelText=" #AxisXLabel"
+                                           LegendMarkerColor="White"
+                                           LightingEnabled="False"
+                                           PercentageFormatString="#0.00"
+                                           RenderAs="{Binding PieRange.ChartType}"
+                                           ShadowEnabled="false"
+                                           ShowInLegend="False"
+                                           YValueFormatString="######.## 'Hrs'">
+
+                                <vc:DataSeries.DataMappings>
+                                    <vc:DataMapping MemberName="AxisXLabel" Path="Category" />
+                                    <vc:DataMapping MemberName="YValue" Path="TotalTime" />
+                                    <vc:DataMapping MemberName="Exploded" Path="Exploded" />
+                                    <vc:DataMapping MemberName="Color" Path="CategoryColorBrush" />
+                                </vc:DataSeries.DataMappings>
+
+                            </vc:DataSeries>
+                        </vc:Chart.Series>
+                    </vc:Chart>
+
+                </Grid>
+                <!--endregion Categories-->
+
+                <!--region Thred Chart Statistics-->
+                <Grid Height="130" Width="350">
+
+                    <StackPanel Orientation="Vertical">
+
+                        <Label FontSize="20" Margin="5,5">Statistics by Category</Label>
+
+                        <StackPanel Margin="5,0" Orientation="Vertical" HorizontalAlignment="Left" Width="125">
+                            <TextBlock Text="Category:" />
+                            <ComboBox Name="ComboBox1"
+                                      Width="120"
+                                      Height="25"
+                                      Margin="2,2"
+                                      DisplayMemberPath="CategoryId"
+                                      IsSynchronizedWithCurrentItem="True"
+                                      ItemsSource="{Binding Categories}"
+                                      KeyboardNavigation.TabIndex="1"
+                                     
+                                      SelectedValue="{Binding CategorySelected,
+                                              Mode=TwoWay,
+                                              UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedValuePath="CategoryId" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Margin="5,10" Orientation="Horizontal">
+                                <TextBlock Text="Frecuency:" FontWeight="Bold" Margin="0,8,5,0" />
+                                <TextBlock Text="{Binding LineRangeByCategory.Frecuency}" FontSize="22"
+                                           FontWeight="Bold" />
+                                <TextBlock Text="Points" FontSize="10" Margin="5,4,0,0" />
+                            </StackPanel>
+
+                            <StackPanel Margin="16,10" Orientation="Horizontal">
+                                <TextBlock Text="Average Time:" FontWeight="Bold" Margin="0,8,5,0" />
+                                <TextBlock Text="{Binding LineRangeByCategory.AverageString}" FontSize="22"
+                                           FontWeight="Bold" />
+                                <TextBlock Text="Hrs" FontSize="10" Margin="5,4,0,0" />
+                            </StackPanel>
+                        </StackPanel>
+
+
+                    </StackPanel>
+
+                </Grid>
+                <!--endregion Categories-->
+
+                <!--region Thred Chart by Categories-->
+                <Grid>
+                    <vc:Chart
+                        Width="350"
+                        Height="300"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        IndicatorEnabled="True">
+
+                        <vc:Chart.PlotArea>
+                            <vc:PlotArea Background="Transparent" />
+                        </vc:Chart.PlotArea>
+
+                        <vc:Chart.Titles>
+                            <vc:Title Text="Trend Chart by" />
+                            <vc:Title Text="{Binding CategorySelected}" />
+
+                        </vc:Chart.Titles>
+
+                        <vc:Chart.TrendLines>
+
+                            <vc:TrendLine Orientation="Horizontal" />
+
+                        </vc:Chart.TrendLines>
+
+                        <vc:Chart.Series>
+
+                            <vc:DataSeries Bevel="false"
+                                           BorderColor="WhiteSmoke"
+                                           Cursor="Hand"
+                                           DataSource="{Binding LineRangeByCategory.Categories}"
+                                           IncludePercentageInLegend="True"
+                                           LabelEnabled="False"
+                                           LabelFontColor="White"
+                                           LabelFontFamily="Segoe UI"
+                                           LabelFontSize="13"
+                                           LabelFontWeight="Bold"
+                                           LabelText=" #AxisXLabel"
+                                           LegendMarkerColor="White"
+                                           LightingEnabled="False"
+                                           PercentageFormatString="#0.00"
+
+                                           RenderAs="{Binding LineRangeByCategory.ChartType}"
+                                           ShadowEnabled="false"
+                                           ShowInLegend="False"
+                                           YValueFormatString="######.## 'Hrs'">
+
+                                <vc:DataSeries.DataMappings>
+                                    <vc:DataMapping MemberName="AxisXLabel" Path="Category" />
+                                    <vc:DataMapping MemberName="YValue" Path="TotalTime" />
+                                    <vc:DataMapping MemberName="Exploded" Path="Exploded" />
+                                    <vc:DataMapping MemberName="Color" Path="CategoryColorBrush" />
+                                </vc:DataSeries.DataMappings>
+
+                            </vc:DataSeries>
+                        </vc:Chart.Series>
+                    </vc:Chart>
+                </Grid>
+                <!--endregion-->
+            </StackPanel>
+        </ScrollViewer>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="Tasker.View.QA.TestCases.TestCaseStepsListControlBarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:classes="clr-namespace:Tasker.Classes"
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="350">
+    <UserControl.DataContext>
+        <Binding Path="TestCaseStepsListControlBarViewModel" Source="{StaticResource Locator}" />
+    </UserControl.DataContext>
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Grid.Row="1">
+            <classes:ToolBarButton VerticalAlignment="Center"
+                                   MetroImageSource="{StaticResource toolbar_new}" 
+                                   ToolTip="Add a new Step"
+                                   IsEnabled ="{Binding EnableNew}"
+                                   Command="{Binding NewCommand}"/>
+
+            <classes:ToolBarButton VerticalAlignment="Center"
+                                   MetroImageSource="{StaticResource toolbar_edit}" 
+                                   ToolTip="Edit Selected Step"
+                                   IsEnabled="{Binding EnableEdit}"
+                                   Command="{Binding EditCommand}"/>
+
+            <classes:ToolBarButton VerticalAlignment="Center"
+                                   Visibility="Collapsed"
+                                   MetroImageSource="{StaticResource toolbar_save}" ToolTip="Save Test Plan changes"
+                                   IsEnabled ="{Binding EnableSave}"
+                                   Command="{Binding SaveCommand}"/>
+
+            <classes:ToolBarButton VerticalAlignment="Center"
+                                   MetroImageSource="{StaticResource toolbar_cancel}" 
+                                   ToolTip="Cancel" 
+                                   IsEnabled="{Binding EnableCancel}"
+                                   Command="{Binding CancelCommand}"/>
+
+            <classes:ToolBarButton VerticalAlignment="Center"
+                                   MetroImageSource="{StaticResource ItemsTestPlanToolBar_delete}" 
+                                   ToolTip="Delete the current Test Plan"
+                                   Visibility="Collapsed"
+                                   Command="{Binding ActivateCategoryCommand}"/>
+
+            <classes:ToolBarButton VerticalAlignment="Center" 
+                                   Visibility="Collapsed"
+                                   MetroImageSource="{StaticResource toolbar_search}" ToolTip="Search Test Plan" 
+                                   Command="{Binding SearchCommand, Mode=TwoWay}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

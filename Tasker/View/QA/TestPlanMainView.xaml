@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="Tasker.View.QA.TestPlanMainView"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:QA="clr-namespace:Tasker.View.QA"
+			 xmlns:wpf="clr-namespace:PixelLab.Wpf;assembly=PixelLab.Wpf" 
+			 mc:Ignorable="d" 
+			 d:DesignHeight="600" d:DesignWidth="350">
+	
+	<UserControl.DataContext>
+		<Binding Path="TestPlanMainViewModel" Source="{StaticResource Locator}" />
+	</UserControl.DataContext>
+
+	<Grid Margin="0,0,0,0">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="30"/>
+			<RowDefinition Height="auto"/>
+			<RowDefinition Height="100"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" MaxWidth="350"/>
+		</Grid.ColumnDefinitions>
+
+		<Grid x:Name="ControlBar" 
+			  Grid.Row="0" 
+              VerticalAlignment="Top" 
+              Margin="5">
+			<QA:TestPlanMainViewControlBarView/>
+		</Grid>
+
+        <!--Este contenedor contendrá el view de Encabezado.-->
+        <Border x:Name="RevealContainer"
+				Grid.Row="1"
+				Margin="0"
+				Background="#3FD2D2D2">
+            <wpf:Reveal x:Name="TaskDetailsReveal"
+						Duration="150"
+						VerticalAlignment="Top"
+						IsExpanded="{Binding ShowNewTestPlanPanel, Mode=TwoWay}">
+                <QA:TestPlanEncabezadoView x:Name="oTaskView" />
+            </wpf:Reveal>
+        </Border>
+
+        <Grid x:Name="Detalle"
+			  Grid.Row="2" 
+              Grid.RowSpan="2" 
+              VerticalAlignment="Top" >
+			<QA:TestPlanListBoxView/>
+		</Grid>
+
+
+		<!--Canvas que bloquea el fondo-->
+		<Canvas x:Name="BlackScreenBlock"
+			Grid.Row="2" Grid.RowSpan="2" 
+			Opacity=".7" Background="Black" 
+			Visibility="{Binding MostrarCanvas,Mode=TwoWay}"/>
+		<!--Bloquea la barra de botones-->
+		<!--<Canvas x:Name="BlackScreenBlockButtonBar" 
+				Grid.Row="0"
+				Opacity=".7" Background="Black" 
+				Visibility="{Binding MostrarCanvas,Mode=TwoWay}"/>-->
+	</Grid>
+	
+	
+</UserControl>

@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="Tasker.View.QA.TestCases.AddStepsControlBarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:classes="clr-namespace:Tasker.Classes"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="350">
+    <UserControl.DataContext>
+        <Binding Path="AddStepsControlBarViewModel" Source="{StaticResource Locator}" />
+    </UserControl.DataContext>
+
+    <Grid>
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+
+            <classes:ToolBarButton VerticalAlignment="Center"
+                                   MetroImageSource="{StaticResource toolbar_save}" 
+                                   ToolTip="save the changes"
+                                   IsEnabled ="{Binding EnableSave}"
+                                   Command="{Binding SaveCommand}"/>
+
+            <classes:ToolBarButton VerticalAlignment="Center"
+                                   MetroImageSource="{StaticResource appbar_clean}"
+                                   ToolTip="Clean the Current Window"
+                                   IsEnabled ="{Binding EnableClean}"
+                                   Command="{Binding CleanCommand}"/>
+
+            <classes:ToolBarButton VerticalAlignment="Center"
+                                   MetroImageSource="{StaticResource toolbar_cancel}" 
+                                   ToolTip="return to the previous screen" 
+                                   IsEnabled="{Binding EnableCancel}"
+                                   Command="{Binding CancelCommand}"/>
+
+            <classes:ToolBarButton VerticalAlignment="Center"
+                                   MetroImageSource="{StaticResource appbar_delete}" 
+                                   ToolTip="return to the previous screen" 
+                                   IsEnabled="{Binding EnableDelete}"
+                                   Command="{Binding DeleteCommand}"/>
+
+        </StackPanel>
+    </Grid>
+</UserControl>

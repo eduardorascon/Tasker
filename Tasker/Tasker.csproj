@@ -1,0 +1,835 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3D48A30F-99B4-4692-98E8-E73EC73EE7E9}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Tasker</RootNamespace>
+    <AssemblyName>Tasker</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <PublishUrl>F:\Software2Deploy\Tasker\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Unc</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>\\172.19.10.236\software\taskerserver\</InstallUrl>
+    <WebPage>publish.htm</WebPage>
+    <ApplicationRevision>58</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>85B4274889F91B5B3F36E46C462B5A4FD50094B2</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Tasker_1_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\slTask.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=2.1.267.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL Tasker\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="FirstFloor.ModernUI, Version=1.0.6.0, Culture=neutral, PublicKeyToken=2d21ec3cd074c59a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ModernUI.WPF.1.0.6\lib\net45\FirstFloor.ModernUI.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight">
+      <HintPath>..\packages\MvvmLightLibs.4.4.32.7\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras">
+      <HintPath>..\packages\MvvmLightLibs.4.4.32.7\lib\net45\GalaSoft.MvvmLight.Extras.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Drawing, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Program Files (x86)\Microsoft SDKs\Expression\Blend\.NETFramework\v4.5\Libraries\Microsoft.Expression.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="PixelLab.Wpf">
+      <HintPath>DLL Tasker\PixelLab.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.4.4.32.7\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WPFVisifire.Charts">
+      <HintPath>DLL Tasker\WPFVisifire.Charts.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\AppBarButton.cs" />
+    <Compile Include="Classes\AsyncObservableCollection.cs" />
+    <Compile Include="Classes\AutomapperTypeAdapter.cs" />
+    <Compile Include="Classes\BaseDTO.cs" />
+    <Compile Include="Classes\ObservableSortedList.cs" />
+    <Compile Include="Classes\ToolBarButton.cs" />
+    <Compile Include="Classes\DesktopWorkArea.cs" />
+    <Compile Include="Classes\FilterControl.cs" />
+    <Compile Include="Classes\FocusManagerExtensions.cs" />
+    <Compile Include="Classes\SetAppBar.cs" />
+    <Compile Include="Classes\TronClock.cs" />
+    <Compile Include="Classes\Validations\ModelBaseEx.cs" />
+    <Compile Include="Classes\Validations\UIValidationError\CamelCaseString.cs" />
+    <Compile Include="Classes\Validations\UIValidationError\UIValidationError.cs" />
+    <Compile Include="Classes\Validations\ViewBaseEx.cs" />
+    <Compile Include="Classes\Validations\ViewModelBaseEx.cs" />
+    <Compile Include="Configuracion\InitializeAutoMapper.cs" />
+    <Compile Include="Content\ConfigureViewModel.cs" />
+    <Compile Include="Content\Configure.xaml.cs">
+      <DependentUpon>Configure.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EditableTextBlock.cs" />
+    <Compile Include="Controls\FluidStatusBar\FluidStatusBar.xaml.cs">
+      <DependentUpon>FluidStatusBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FluidStatusBar\StatusDirection.cs" />
+    <Compile Include="Controls\FluidStatusBar\StatusMessage.cs" />
+    <Compile Include="Controls\GanttBar.xaml.cs">
+      <DependentUpon>GanttBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TransPrev.xaml.cs">
+      <DependentUpon>TransPrev.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TronClock.xaml.cs">
+      <DependentUpon>TronClock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeskTop.xaml.cs">
+      <DependentUpon>DeskTop.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Design\DesignDataService.cs" />
+    <Compile Include="Helpers\AppVariables.cs" />
+    <Compile Include="Helpers\Converters.cs" />
+    <Compile Include="Helpers\Functions.cs" />
+    <Compile Include="Helpers\ItemDoubleClick.cs" />
+    <Compile Include="Helpers\TaskerHelper.cs" />
+    <Compile Include="Model\CategoryItem.cs" />
+    <Compile Include="Model\ChartItem.cs" />
+    <Compile Include="Model\QA\AplicationItem.cs" />
+    <Compile Include="Model\QA\ExecutionDetailItem.cs" />
+    <Compile Include="Model\QA\ExecutionItem.cs" />
+    <Compile Include="Model\QA\FaultExecutionItem.cs" />
+    <Compile Include="Model\QA\HistoricRunExecutionItem.cs" />
+    <Compile Include="Model\QA\RunExecutionItem.cs" />
+    <Compile Include="Model\QA\RunExecutionDetailItem.cs" />
+    <Compile Include="Model\QA\StepItem.cs" />
+    <Compile Include="Model\QA\TestCaseItem.cs" />
+    <Compile Include="Model\QA\TestPlanItem.cs" />
+    <Compile Include="Model\ResultDTO.cs" />
+    <Compile Include="Model\GlobalCategoryItem.cs" />
+    <Compile Include="Model\ProjectDailySummary.cs" />
+    <Compile Include="Model\IndividualStatistics.cs" />
+    <Compile Include="Model\SprintItem.cs" />
+    <Compile Include="Model\IssueItem.cs" />
+    <Compile Include="Model\ReleaseItem.cs" />
+    <Compile Include="Model\DataItem.cs" />
+    <Compile Include="Model\DataService.cs" />
+    <Compile Include="Model\IDataService.cs" />
+    <Compile Include="Model\PendingTaskItem.cs" />
+    <Compile Include="Model\ChartCategoryItem.cs" />
+    <Compile Include="Model\TaskItem.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\Categories\CategoriesViewModel.cs" />
+    <Compile Include="ViewModel\Categories\CategoryViewModel.cs" />
+    <Compile Include="ViewModel\Categories\CategoriesWorkSpaceViewModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\Sprint\SprintsViewModel.cs" />
+    <Compile Include="ViewModel\Sprint\SprintsWorkSpaceViewModel.cs" />
+    <Compile Include="ViewModel\Sprint\SprintViewModel.cs" />
+    <Compile Include="ViewModel\Tasks\TasksWorkSpaceViewModel.cs" />
+    <Compile Include="ViewModel\QA\TestCases\AddExecutionControlBarViewModel.cs" />
+    <Compile Include="ViewModel\QA\TestCases\AddExecutionListViewModel.cs" />
+    <Compile Include="ViewModel\QA\TestCases\AddExecutionTestCaseListViewModel.cs" />
+    <Compile Include="ViewModel\QA\TestCases\AddExecutionTestPlanListViewModel.cs" />
+    <Compile Include="ViewModel\QA\TestCases\AddExecutionViewModel.cs" />
+    <Compile Include="ViewModel\QA\TestCases\AddStepsControlBarViewModel.cs" />
+    <Compile Include="ViewModel\QA\TestCases\AddStepsMainViewModel.cs" />
+    <Compile Include="ViewModel\QA\TestCases\AddStepsViewModel.cs" />
+    <Compile Include="ViewModel\QA\TestCases\ExecutionListViewModel.cs" />
+    <Compile Include="ViewModel\QA\TestCases\ExecutionMainControlBarViewModel.cs" />
+    <Compile Include="ViewModel\QA\TestCases\ExecutionMainViewModel.cs" />
+    <Compile Include="ViewModel\QA\TestCases\ExecutionMainViewTestCaseListViewModel.cs" />
+    <Compile Include="ViewModel\QA\TestCases\RunExecutionControlBarViewModel.cs" />
+    <Compile Include="ViewModel\QA\TestCases\RunExecutionFaultExceptionControlBarViewModel.cs" />
+    <Compile Include="ViewModel\QA\TestCases\RunExecutionFaultExceptionMainViewModel.cs" />
+    <Compile Include="ViewModel\QA\TestCases\RunExecutionMainViewModel.cs" />
+    <Compile Include="ViewModel\QA\TestCases\RunExecutionStepListViewModel.cs" />
+    <Compile Include="ViewModel\QA\TestCases\RunExecutionTestCaseListViewModel.cs" />
+    <Compile Include="ViewModel\QA\TestCases\StepListViewModel.cs" />
+    <Compile Include="ViewModel\QA\TestCases\TestCaseMainViewModel.cs" />
+    <Compile Include="ViewModel\QA\TestCases\TestCaseStepsListControlBarViewModel.cs" />
+    <Compile Include="ViewModel\QA\TestCases\TestCasesViewModel.cs" />
+    <Compile Include="ViewModel\QA\TestCases\TestCaseViewModel.cs" />
+    <Compile Include="ViewModel\QA\PaqueteMSJ.cs" />
+    <Compile Include="ViewModel\QA\TestCases\TestCaseControlBarViewModel.cs" />
+    <Compile Include="ViewModel\QA\TestPlanBusquedaViewModel.cs" />
+    <Compile Include="ViewModel\QA\TestPlanEncabezadoViewModel.cs" />
+    <Compile Include="ViewModel\QA\TestPlanListBoxViewModel.cs" />
+    <Compile Include="ViewModel\QA\TestPlanMainViewControlBarViewModel.cs" />
+    <Compile Include="ViewModel\QA\TestPlanMainViewModel.cs" />
+    <Compile Include="ViewModel\Statistics\StatisticsViewModel.cs" />
+    <Compile Include="ViewModel\ProjectDailySummaryViewModel.cs" />
+    <Compile Include="ViewModel\TabTasksViewModel.cs" />
+    <Compile Include="ViewModel\IssueListViewModel.cs" />
+    <Compile Include="ViewModel\ReleaseListViewModel.cs" />
+    <Compile Include="ViewModel\TaskRunViewModel.cs" />
+    <Compile Include="ViewModel\DeskTopViewModel.cs" />
+    <Compile Include="ViewModel\PendingTasksViewModel.cs" />
+    <Compile Include="ViewModel\PendingTaskViewModel.cs" />
+    <Compile Include="ViewModel\StatusBarViewModel.cs" />
+    <Compile Include="ViewModel\TabsViewModel.cs" />
+    <Compile Include="ViewModel\TaskListViewModel.cs" />
+    <Compile Include="ViewModel\Issues\IssuesWorkSpaceViewModel.cs" />
+    <Compile Include="ViewModel\TaskViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="ViewModel\ViewModelLocator2.cs" />
+    <Compile Include="View\Categories\CategoriesView.xaml.cs">
+      <DependentUpon>CategoriesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Categories\CategoryView.xaml.cs">
+      <DependentUpon>CategoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Categories\CategoriesWorkSpaceView.xaml.cs">
+      <DependentUpon>CategoriesWorkSpaceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TestPageGant.xaml.cs">
+      <DependentUpon>TestPageGant.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Issues\IssuesWorkSpaceView.xaml.cs">
+      <DependentUpon>IssuesWorkSpaceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProjectDailySummaryItemView.xaml.cs">
+      <DependentUpon>ProjectDailySummaryItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QA\TabsQA.xaml.cs">
+      <DependentUpon>TabsQA.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QA\TestCases\AddExecutionControlBarView.xaml.cs">
+      <DependentUpon>AddExecutionControlBarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QA\TestCases\AddExecutionListView.xaml.cs">
+      <DependentUpon>AddExecutionListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QA\TestCases\AddExecutionTestCaseListView.xaml.cs">
+      <DependentUpon>AddExecutionTestCaseListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QA\TestCases\AddExecutionTestPlanListView.xaml.cs">
+      <DependentUpon>AddExecutionTestPlanListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QA\TestCases\AddExecutionView.xaml.cs">
+      <DependentUpon>AddExecutionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QA\TestCases\AddStepsControlBarView.xaml.cs">
+      <DependentUpon>AddStepsControlBarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QA\TestCases\AddStepsMainView.xaml.cs">
+      <DependentUpon>AddStepsMainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QA\TestCases\AddStepsView.xaml.cs">
+      <DependentUpon>AddStepsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QA\TestCases\ExecutionListView.xaml.cs">
+      <DependentUpon>ExecutionListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QA\TestCases\ExecutionMainControlBarView.xaml.cs">
+      <DependentUpon>ExecutionMainControlBarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QA\TestCases\ExecutionMainView.xaml.cs">
+      <DependentUpon>ExecutionMainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QA\TestCases\ExecutionMainViewTestCaseListView.xaml.cs">
+      <DependentUpon>ExecutionMainViewTestCaseListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QA\TestCases\RunExecutionControlBarView.xaml.cs">
+      <DependentUpon>RunExecutionControlBarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QA\TestCases\RunExecutionFaultExceptionControlBarView.xaml.cs">
+      <DependentUpon>RunExecutionFaultExceptionControlBarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QA\TestCases\RunExecutionFaultExceptionMainView.xaml.cs">
+      <DependentUpon>RunExecutionFaultExceptionMainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QA\TestCases\RunExecutionMainView.xaml.cs">
+      <DependentUpon>RunExecutionMainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QA\TestCases\RunExecutionStepListView.xaml.cs">
+      <DependentUpon>RunExecutionStepListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QA\TestCases\RunExecutionTestCaseListView.xaml.cs">
+      <DependentUpon>RunExecutionTestCaseListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QA\TestCases\StepListView.xaml.cs">
+      <DependentUpon>StepListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QA\TestCases\TestCaseMainView.xaml.cs">
+      <DependentUpon>TestCaseMainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QA\TestCases\TestCaseStepsListControlBarView.xaml.cs">
+      <DependentUpon>TestCaseStepsListControlBarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QA\TestCases\TestCasesView.xaml.cs">
+      <DependentUpon>TestCasesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QA\TestCases\TestCaseView.xaml.cs">
+      <DependentUpon>TestCaseView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QA\TestCases\TestCaseControlBarView.xaml.cs">
+      <DependentUpon>TestCaseControlBarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QA\TestPlanBusquedaView.xaml.cs">
+      <DependentUpon>TestPlanBusquedaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QA\TestPlanEncabezadoView.xaml.cs">
+      <DependentUpon>TestPlanEncabezadoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QA\TestPlanListBoxView.xaml.cs">
+      <DependentUpon>TestPlanListBoxView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QA\TestPlanMainView.xaml.cs">
+      <DependentUpon>TestPlanMainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QA\TestPlanMainViewControlBarView.xaml.cs">
+      <DependentUpon>TestPlanMainViewControlBarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Sprint\SprintsView.xaml.cs">
+      <DependentUpon>SprintsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Sprint\SprintsWorkSpaceView.xaml.cs">
+      <DependentUpon>SprintsWorkSpaceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Sprint\SprintView.xaml.cs">
+      <DependentUpon>SprintView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TabTasks.xaml.cs">
+      <DependentUpon>TabTasks.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Issues\IssueListView.xaml.cs">
+      <DependentUpon>IssueListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ReleaseListView.xaml.cs">
+      <DependentUpon>ReleaseListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PendingTasksView.xaml.cs">
+      <DependentUpon>PendingTasksView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PendingTaskView.xaml.cs">
+      <DependentUpon>PendingTaskView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StatusBarView.xaml.cs">
+      <DependentUpon>StatusBarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Tabs.xaml.cs">
+      <DependentUpon>Tabs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TaskListView.xaml.cs">
+      <DependentUpon>TaskListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TaskRunView.xaml.cs">
+      <DependentUpon>TaskRunView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Tasks\TasksWorkSpaceView.xaml.cs">
+      <DependentUpon>TasksWorkSpaceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TaskView.xaml.cs">
+      <DependentUpon>TaskView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TestValidationView.xaml.cs">
+      <DependentUpon>TestValidationView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Content\Configure.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\FluidStatusBar\FluidStatusBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\GanttBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\TransPrev.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\TronClock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DeskTop.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Content\About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="Content\About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Content\SettingsAppearance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="Content\SettingsAppearance.xaml.cs">
+      <DependentUpon>SettingsAppearance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\SettingsAppearanceViewModel.cs" />
+    <Page Include="Resources\Classes\AppBarButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Classes\ToolBarButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Classes\FilterControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\DataTemplate\DataTemplates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\ErrorResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\MetroStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\NumericUpDown.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\ProgressBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Themes\ModernUI.TaskerLight.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\ToggleButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Categories\CategoriesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Categories\CategoryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Categories\CategoriesWorkSpaceView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\TestPageGant.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Issues\IssuesWorkSpaceView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ProjectDailySummaryItemView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\QA\TabsQA.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\QA\TestCases\AddExecutionControlBarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\QA\TestCases\AddExecutionListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\QA\TestCases\AddExecutionTestCaseListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\QA\TestCases\AddExecutionTestPlanListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\QA\TestCases\AddExecutionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\QA\TestCases\AddStepsControlBarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\QA\TestCases\AddStepsMainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\QA\TestCases\AddStepsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\QA\TestCases\ExecutionListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\QA\TestCases\ExecutionMainControlBarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\QA\TestCases\ExecutionMainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\QA\TestCases\ExecutionMainViewTestCaseListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\QA\TestCases\RunExecutionControlBarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\QA\TestCases\RunExecutionFaultExceptionControlBarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\QA\TestCases\RunExecutionFaultExceptionMainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\QA\TestCases\RunExecutionMainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\QA\TestCases\RunExecutionStepListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\QA\TestCases\RunExecutionTestCaseListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\QA\TestCases\StepListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\QA\TestCases\TestCaseMainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\QA\TestCases\TestCaseStepsListControlBarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\QA\TestCases\TestCasesView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\QA\TestCases\TestCaseView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\QA\TestCases\TestCaseControlBarView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\QA\TestPlanBusquedaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\QA\TestPlanEncabezadoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\QA\TestPlanListBoxView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\QA\TestPlanMainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\QA\TestPlanMainViewControlBarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Sprint\SprintsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Sprint\SprintsWorkSpaceView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Sprint\SprintView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Statistics\StatisticsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\TabTasks.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Issues\IssueListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ReleaseListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PendingTasksView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PendingTaskView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="View\Home.xaml.cs">
+      <DependentUpon>Home.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Page Include="View\StatusBarView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Tabs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TaskListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\TaskRunView.xaml">
+      <SubType>Form</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Tasks\TasksWorkSpaceView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\TaskView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\TestValidationView.xaml">
+      <SubType>Form</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Tasker_1_TemporaryKey.pfx" />
+    <None Include="Tasker_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ExternalDependencies\AutoMapper.dll" />
+    <Content Include="ExternalDependencies\FirstFloor.ModernUI.dll" />
+    <Content Include="ExternalDependencies\GalaSoft.MvvmLight.Extras.WPF45.dll" />
+    <Content Include="ExternalDependencies\GalaSoft.MvvmLight.WPF45.dll" />
+    <Content Include="ExternalDependencies\Microsoft.Practices.ServiceLocation.dll" />
+    <Content Include="ExternalDependencies\Newtonsoft.Json.dll" />
+    <Content Include="ExternalDependencies\PixelLab.Wpf.dll" />
+    <Content Include="ExternalDependencies\System.Net.Http.Extensions.dll" />
+    <Content Include="ExternalDependencies\System.Net.Http.Primitives.dll" />
+    <Content Include="ExternalDependencies\WPF.FlipView.dll" />
+    <Content Include="ExternalDependencies\WPFVisifire.Charts.dll" />
+    <Content Include="ExternalDependencies\WPFVisifire.Gauges.dll" />
+    <Content Include="ExternalDependencies\Xceed.Wpf.Toolkit.dll" />
+    <Content Include="Model\Documentation\MVVM Registered Messages.txt" />
+    <Content Include="Model\Documentation\New Features History.txt" />
+    <Content Include="Resources\Fondo.jpg" />
+    <Content Include="Resources\Fondo2.jpg" />
+    <Content Include="Resources\slTask.ico" />
+    <Content Include="Resources\slTask.png" />
+    <Content Include="Resources\UI Resources\Close_act.png" />
+    <Content Include="Resources\UI Resources\Close_inact.png" />
+    <Content Include="Resources\UI Resources\Close_pr.png" />
+    <Content Include="Resources\UI Resources\Foother_bottom_left.png" />
+    <Content Include="Resources\UI Resources\Foother_bottom_middle.png" />
+    <Content Include="Resources\UI Resources\Foother_bottom_right.png" />
+    <Content Include="Resources\UI Resources\Maximize_act.png" />
+    <Content Include="Resources\UI Resources\Maximize_inact.png" />
+    <Content Include="Resources\UI Resources\Maximize_pr.png" />
+    <Content Include="Resources\UI Resources\Minimize_act.png" />
+    <Content Include="Resources\UI Resources\Minimize_inact.png" />
+    <Content Include="Resources\UI Resources\Minimize_pr.png" />
+    <Content Include="Resources\UI Resources\Title_top_left.png" />
+    <Content Include="Resources\UI Resources\Title_top_middle.png" />
+    <Content Include="Resources\UI Resources\Title_top_right.png" />
+    <Content Include="Resources\warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="AutoMapper">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataServices\DataServices.csproj">
+      <Project>{3135c023-f081-4432-8ffa-0444ca6ac81e}</Project>
+      <Name>DataServices</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="View\NotificationList\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
